@@ -21,7 +21,7 @@ export default function ProductCard({ product }: { product: ProductDef }): JSX.E
       <p className="tagline">{product.tagline}</p>
       <div className="card-bottom-row">
         <span className="price">${product.basePrice}</span>
-        <span className="cta">Ver detalle →</span>
+        <span className="cta">Ver detalle</span>
       </div>
     </button>
   );

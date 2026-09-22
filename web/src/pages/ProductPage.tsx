@@ -56,7 +56,7 @@ export default function ProductPage(): JSX.Element {
       const scene = sceneRef.current;
       const config = getConfig(product.id);
       scene.loadProduct(product.kind, config.colorHex);
-      scene.setBackground(tint(product.accent, 0.8));
+      scene.setBackground(tint(product.accent, 0.88));
       scene.setFinish(config.finish);
       if (product.engravable) scene.setEngraving(config.engraving);
 

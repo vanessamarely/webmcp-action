@@ -239,7 +239,7 @@ export class ProductScene {
 
     const pmrem = new THREE.PMREMGenerator(this.renderer);
     this.scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-    this.scene.background = new THREE.Color(0xf7f5ef);
+    this.scene.background = new THREE.Color(0xf5f5f7);
 
     const key = new THREE.DirectionalLight(0xffffff, 1.4);
     key.position.set(3, 4, 2);
