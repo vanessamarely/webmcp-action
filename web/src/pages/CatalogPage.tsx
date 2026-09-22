@@ -5,14 +5,8 @@ export default function CatalogPage(): JSX.Element {
   return (
     <main className="catalog-view">
       <div className="catalog-head">
-        <div className="accent-row">
-          <span />
-          <span />
-          <span />
-        </div>
-        <h1>
-          Tienda demo de <mark>WebMCP</mark>
-        </h1>
+        <span className="eyebrow">Demo interactiva</span>
+        <h1>Tienda demo de WebMCP</h1>
         <p>
           Cada producto registra sus propias tools con <code>document.modelContext.registerTool()</code> al
           abrirse. La tienda entera también expone tools de navegación (buscar, abrir producto, ver carrito,

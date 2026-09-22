@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import type { ProductDef } from "../products";
 import { PRODUCT_ICONS } from "../icons";
+import { tint } from "../color-utils";
 
 export default function ProductCard({ product }: { product: ProductDef }): JSX.Element {
   const navigate = useNavigate();
@@ -8,7 +9,7 @@ export default function ProductCard({ product }: { product: ProductDef }): JSX.E
 
   return (
     <button className="product-card" onClick={() => navigate(`/product/${product.id}`)}>
-      <div className="swatch" style={{ background: product.accent }}>
+      <div className="swatch" style={{ background: tint(product.accent, 0.55) }}>
         <div className="icon-badge">
           <Icon />
         </div>
