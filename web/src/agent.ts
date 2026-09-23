@@ -24,9 +24,14 @@ const RESPONSE_SCHEMA = {
 function toolsToPrompt(tools: WebMcpRegisteredTool[]): string {
   return tools
     .map((t) => {
-      const schema = t.inputSchema as { properties?: Record<string, unknown> } | undefined;
-      const props = schema?.properties ? Object.keys(schema.properties).join(",") : "";
-      const desc = t.description.length > 55 ? `${t.description.slice(0, 52)}...` : t.description;
+      const schema = t.inputSchema as { properties?: Record<string, unknown>; required?: string[] } | undefined;
+      const required = new Set(schema?.required ?? []);
+      const props = schema?.properties
+        ? Object.keys(schema.properties)
+            .map((name) => `${name}${required.has(name) ? "!" : ""}`)
+            .join(",")
+        : "";
+      const desc = t.description.length > 40 ? `${t.description.slice(0, 37)}...` : t.description;
       return `${t.name}(${props}): ${desc}`;
     })
     .join("\n");
@@ -34,9 +39,9 @@ function toolsToPrompt(tools: WebMcpRegisteredTool[]): string {
 
 function systemPrompt(tools: WebMcpRegisteredTool[]): string {
   return [
-    "Controlas una tienda web vía tools WebMCP. Tools disponibles:",
+    "Controlas una tienda web vía tools WebMCP. Tools disponibles ('!' = campo obligatorio):",
     toolsToPrompt(tools),
-    'Responde SOLO JSON {done,say,tool,args}. Para llamar una tool: done=false, tool=<nombre>, args=<objeto>. Si terminaste: done=true, tool="", args={}. Una tool por respuesta.',
+    'Responde SOLO JSON {done,say,tool,args}. Para llamar una tool: done=false, tool=<nombre>, args=<objeto con TODOS los campos obligatorios>. Si terminaste: done=true, tool="", args={}. Una tool por respuesta.',
   ].join("\n");
 }
 
@@ -106,8 +111,10 @@ export class WebMcpAgent {
         nextInput = `Resultado de la tool "${turn.tool}": ${resultText}\n¿Necesitas otra tool o ya terminaste? Responde en el mismo formato JSON.`;
       } catch (err) {
         const msg = err instanceof Error ? err.message : String(err);
-        log("err", `Error ejecutando ${turn.tool}: ${msg}`);
-        return;
+        log("err", `Error ejecutando ${turn.tool}: ${msg} — reintentando`);
+        // Le devolvemos el error al modelo (en vez de abortar el turno) para
+        // que pueda corregir los argumentos y reintentar en el siguiente paso.
+        nextInput = `La tool "${turn.tool}" falló con args ${JSON.stringify(turn.args)}: ${msg}\nRevisa el schema y vuelve a intentar con args corregidos, o responde done=true si no puedes continuar.`;
       }
     }
 

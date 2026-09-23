@@ -73,7 +73,7 @@ export default function ProductPage(): JSX.Element {
       setStatus(
         agent
           ? { kind: "ready", text: "agente listo (Prompt API on-device)" }
-          : { kind: "fallback", text: "Prompt API no disponible — modo manual" }
+          : { kind: "fallback", text: "Prompt API no confirmada — se reintenta al escribir" }
       );
     })();
 
@@ -87,10 +87,26 @@ export default function ProductPage(): JSX.Element {
 
   const handleSend = useCallback(
     async (message: string) => {
-      if (!agentRef.current) return;
       appendLog("you", message);
       setSending(true);
       try {
+        // Si aún no hay agente (p. ej. el modelo necesitaba un gesto del
+        // usuario para empezar a descargarse), lo intentamos justo aquí —
+        // este handler corre dentro del click/Enter del usuario, así que
+        // sí cuenta como gesto para LanguageModel.create().
+        if (!agentRef.current) {
+          const agent = await WebMcpAgent.create();
+          agentRef.current = agent;
+          setStatus(
+            agent
+              ? { kind: "ready", text: "agente listo (Prompt API on-device)" }
+              : { kind: "fallback", text: "Prompt API no disponible — usa los controles" }
+          );
+        }
+        if (!agentRef.current) {
+          appendLog("err", "El agente no está disponible en este navegador — usa los controles manuales.");
+          return;
+        }
         await agentRef.current.handleUserMessage(message, appendLog);
       } finally {
         setSending(false);
@@ -105,7 +121,6 @@ export default function ProductPage(): JSX.Element {
   const price = priceFor(product.id);
 
   const Icon = PRODUCT_ICONS[product.kind];
-  const fallback = status.kind === "fallback";
 
   return (
     <div className="pdp-view" style={{ "--product-accent": product.accent } as CSSProperties}>
@@ -152,9 +167,9 @@ export default function ProductPage(): JSX.Element {
           />
           <ChatPanel
             log={log}
-            disabled={fallback}
+            disabled={false}
             sending={sending}
-            placeholder={fallback ? "Lenguaje natural no disponible — usa los controles ↑" : "Ej: ponlos azul mate y grábales DEMO"}
+            placeholder="Ej: ponlos azul mate y grábales DEMO"
             onSend={handleSend}
           />
         </div>
