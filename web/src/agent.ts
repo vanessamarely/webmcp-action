@@ -95,9 +95,14 @@ export class WebMcpAgent {
       const raw = await this.session.prompt(nextInput, { responseConstraint: RESPONSE_SCHEMA });
       const turn = parseAgentTurn(raw);
       if (!turn) {
-        console.warn("[webmcp-agent] respuesta no parseable:", raw);
-        log("err", "El agente devolvió una respuesta no parseable.");
-        return;
+        console.warn(`[webmcp-agent] respuesta no parseable (paso ${step + 1}/${MAX_TOOL_STEPS}):`, raw);
+        // No abortamos de una: le pedimos al modelo que reintente en el
+        // formato correcto — muchas veces el modelo chico se distrae una
+        // vez y se corrige solo si se le insiste.
+        log("err", "Respuesta no parseable — reintentando");
+        nextInput =
+          'Tu última respuesta no era JSON válido. Responde ÚNICAMENTE el objeto JSON {done,say,tool,args}, sin texto adicional ni bloques de código.';
+        continue;
       }
 
       if (turn.say) log("agent", turn.say);
