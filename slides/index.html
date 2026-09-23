@@ -40,6 +40,7 @@
       .bio-photo-slot { width: 208px; height: 208px; }
       .bio-photo-ring.outer { inset: -14px -14px -14px -6px; }
       .bio-name { font-size: 44px; margin: 6px 0 8px 0; }
+      .bio-role { font-size: 20px; margin: 0 0 8px 0; }
       .bio-list { margin-top: 12px; gap: 10px; }
       .bio-list li { grid-template-columns: 36px 1fr; gap: 8px; font-size: 21px; }
       .bio-list .tick { font-size: 17px; }
@@ -52,7 +53,7 @@
       .vs-col ul li { font-size: 17px; padding-left: 18px; line-height: 1.25; }
       .vs-col .vs-tags { margin-top: 8px; gap: 5px; }
       .vs-col .vs-tags code { padding: 3px 8px; font-size: 13px; }
-      .vs-arrow { font-size: 13px; gap: 5px; }
+      .vs-arrow { font-size: 13px; gap: 6px; }
       .vs-arrow .big { font-size: 30px; }
 
       .code-dive { gap: 22px; }
@@ -75,25 +76,74 @@
       .benefit-card .d { font-size: 14px; line-height: 1.25; }
 
       .check-grid { gap: 12px 16px; }
-      .check-item { padding: 14px 16px; grid-template-columns: 34px 1fr; gap: 10px; }
+      .check-item { padding: 14px 16px; grid-template-columns: 34px 1fr; gap: 10px; align-self: start; }
       .check-item .box { width: 30px; height: 30px; font-size: 15px; }
       .check-item .k { font-size: 18px; margin-bottom: 3px; }
       .check-item .d { font-size: 14px; line-height: 1.25; }
       .check-item .d code { font-size: 13px; }
+      .takeaway-slide { justify-content: center; align-items: center; text-align: center; padding-top: 70px; padding-bottom: 92px; }
+      .takeaway-slide .eyebrow { margin-bottom: 14px; }
+      .takeaway-slide .title { font-size: 52px; margin-bottom: 30px; }
+      .takeaway-slide .check-grid { width: min(900px, 100%); margin: 0 auto; gap: 18px; align-items: center; }
+      .takeaway-slide .check-item { padding: 22px 24px; grid-template-columns: 46px 1fr; gap: 16px; align-self: center; text-align: left; }
+      .takeaway-slide .check-item .box { width: 44px; height: 44px; font-size: 19px; }
+      .takeaway-slide .check-item .k { font-size: 25px; margin-bottom: 6px; }
+      .takeaway-slide .check-item .d { font-size: 19px; line-height: 1.34; }
+      .takeaway-cards { width: min(760px, 100%); margin: 0 auto; gap: 12px; }
+      .takeaway-cards .benefit-card { padding: 12px 16px; text-align: left; }
+      .takeaway-cards .benefit-card .k { font-size: 11px; margin-bottom: 4px; }
+      .takeaway-cards .benefit-card .v { font-size: 20px; margin-bottom: 4px; line-height: 1.15; }
+      .takeaway-cards .benefit-card .d { font-size: 14px; line-height: 1.3; }
+      .client-flow-slide .feature-row { width: min(820px, 100%); gap: 14px; }
+      .client-flow-slide .feature-row .vtf { padding: 18px 20px; text-align: left; background: rgba(2, 6, 23, 0.88); border: 1px solid var(--rule-strong); border-left: 4px solid var(--grid-cyan); border-radius: 4px; }
+      .client-flow-slide .feature-row .vtf:nth-child(2) { border-left-color: var(--accent-magenta); }
+      .client-flow-slide .feature-row .vtf:nth-child(3) { border-left-color: #ffd166; }
+      .client-flow-slide .feature-row .vtf-k { font-size: 15px; margin-bottom: 8px; }
+      .client-flow-slide .feature-row .vtf-d { font-size: 19px; line-height: 1.32; }
+      .client-flow-slide .feature-row .vtf-d code { font-size: 17px; color: var(--grid-cyan); }
+      .architecture-cards { width: min(760px, 100%); margin: 0 auto; gap: 12px; }
+      .architecture-cards .benefit-card { padding: 14px 16px; text-align: left; }
+      .architecture-cards .benefit-card .k { font-size: 11px; margin-bottom: 5px; }
+      .architecture-cards .benefit-card .v { font-size: 20px; margin-bottom: 5px; line-height: 1.15; }
+      .architecture-cards .benefit-card .d { font-size: 14px; line-height: 1.3; }
+      .architecture-cards .benefit-card .d code { font-size: 13px; color: var(--grid-cyan); }
 
-      .demo-cta-grid { gap: 12px; }
-      .demo-cta-card { padding: 12px 14px; }
-      .demo-cta-card .k { font-size: 11px; margin-bottom: 4px; }
-      .demo-cta-card .v { font-size: 17px; margin-bottom: 3px; }
-      .demo-cta-card .d { font-size: 14px; }
-      .demo-cta-title { font-size: 46px; margin: 0 0 12px 0; }
+      .demo-cta-frame { justify-content: center; align-items: center; text-align: center; padding-top: 58px; padding-bottom: 72px; }
+      .demo-cta-eyebrow { font-size: 15px; margin-bottom: 14px; letter-spacing: 0.24em; }
+      .demo-cta-title { font-size: 58px; margin: 0 0 12px 0; line-height: 0.98; }
+      .demo-cta-sub { font-size: 18px; margin: 0 0 22px 0; max-width: 720px; }
+      .demo-cta-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: min(760px, 100%); max-width: 760px; gap: 14px; }
+      .demo-cta-card { display: block; padding: 14px 16px; min-height: 0; text-align: left; background: rgba(2, 6, 23, 0.88); border: 1px solid var(--rule-strong); border-radius: 4px; }
+      .demo-cta-card .k { font-size: 11px; margin-bottom: 5px; }
+      .demo-cta-card .v { font-size: 20px; margin-bottom: 5px; line-height: 1.12; }
+      .demo-cta-card .d { font-size: 13px; line-height: 1.25; word-break: break-word; }
+      .demo-cta-card .d a { color: #ffffff; text-decoration: underline; text-decoration-color: var(--grid-cyan); text-underline-offset: 3px; }
+      .resources-frame { justify-content: center; align-items: center; text-align: center; padding-top: 58px; padding-bottom: 72px; }
+      .resources-frame .title { font-size: var(--type-title); margin: 0 0 16px 0; line-height: 1.04; }
 
-      .qa-mega { font-size: 60px; margin: 0 0 14px 0; }
-      .qa-thanks { font-size: 22px; margin: 0 0 20px 0; }
-      .qa-socials { gap: 20px; }
-      .qa-socials .col { padding: 10px 18px; min-width: 150px; }
-      .qa-socials .col .net { font-size: 12px; }
-      .qa-socials .col .handle { font-size: 18px; }
+      .live-frame { justify-content: center; align-items: center; text-align: center; padding-top: 70px; padding-bottom: 90px; }
+      .live-title { font-size: var(--type-title); margin: 0 0 24px 0; line-height: 1.04; }
+      .live-sub { font-size: 20px !important; line-height: 1.35; max-width: 780px; margin: 0 auto; color: var(--ink); }
+      .live-frame .qa-qr-row { justify-content: center; margin-top: 24px; }
+      .live-frame .qa-qr-img { width: 112px; height: 112px; }
+      .live-frame .qa-qr-label { font-size: 14px; }
+
+      .qa-frame { justify-content: center; align-items: center; text-align: center; padding-top: 70px; padding-bottom: 90px; }
+      .qa-title { font-size: var(--type-title); margin: 0 0 18px 0; line-height: 1.04; }
+      .qa-thanks { font-size: 20px; margin: 0 0 24px 0; max-width: 720px; }
+      .qa-social-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); width: min(760px, 100%); }
+      .qa-social-cards .demo-cta-card { text-align: center; }
+      .qa-social-cards .demo-cta-card .k { font-size: 11px; }
+      .qa-social-cards .demo-cta-card .v { font-size: 18px; }
+
+      .complement-slide .title { margin-top: 52px; margin-bottom: 26px; }
+      .complement-grid { margin-top: 0; align-items: center; }
+      .demo-alert-panel { align-self: center; padding: 12px 16px; display: flex; flex-direction: column; justify-content: center; }
+      .demo-alert-panel .alert-head { font-size: 13px; margin-bottom: 8px; }
+      .demo-alert-panel .alert-list { gap: 7px; }
+      .demo-alert-panel .alert-list li { font-size: 15px; line-height: 1.2; padding-left: 10px; }
+      .build-slide .title { margin-top: 54px; margin-bottom: 28px; }
+      .build-slide .benefits { margin-top: 0 !important; }
 
       .cover-frame {
         display: flex; flex-direction: column; align-items: center;
@@ -102,14 +152,7 @@
       .cover-left { display: flex; flex-direction: column; align-items: center; }
       .cover-title { font-size: 76px; margin: 8px 0 0 0; text-align: center; }
       .cover-viz { position: relative; height: 220px; width: 100%; margin-top: 20px; }
-      .cover-viz .orbit-cube { position: absolute; top: 30px; left: 50%; bottom: auto; transform: translateX(-50%); perspective: 800px; }
-      .cover-viz .orbit-cube .wf-cube { width: 92px; height: 92px; }
-      .cover-viz .orbit-cube .wf-cube .face.f1 { transform: translateZ(46px); }
-      .cover-viz .orbit-cube .wf-cube .face.f2 { transform: rotateY(180deg) translateZ(46px); }
-      .cover-viz .orbit-cube .wf-cube .face.f3 { transform: rotateY(90deg) translateZ(46px); }
-      .cover-viz .orbit-cube .wf-cube .face.f4 { transform: rotateY(-90deg) translateZ(46px); }
-      .cover-viz .orbit-cube .wf-cube .face.f5 { transform: rotateX(90deg) translateZ(46px); }
-      .cover-viz .orbit-cube .wf-cube .face.f6 { transform: rotateX(-90deg) translateZ(46px); }
+      .cover-viz .ecommerce-hero { margin: 4px auto 0; }
       .cover-viz .floating-tag { font-size: 13px; padding: 6px 10px; }
       .cover-viz .ft1 { top: 10px; left: 8%; right: auto; }
       .cover-viz .ft2 { top: 90px; right: 8%; left: auto; color: var(--accent-magenta); border-color: rgba(189, 0, 255, 0.5); }
@@ -136,6 +179,7 @@
       .io-badge { padding: 6px 14px; gap: 8px; font-size: 13px; }
       .footer-bar { height: 40px; padding: 0 20px; font-size: 13px; }
       .footer-bar .socials { gap: 14px; }
+      .frame > .eyebrow { position: absolute; top: var(--pad-top); left: var(--pad-x); margin: 0; z-index: 4; }
     </style>
   </head>
   <body>
@@ -144,26 +188,25 @@
         <div class="mesh-bg"></div>
         <div class="scanline"></div>
         <div class="frame cover-frame">
+          <div class="eyebrow">// DevFest Quito</div>
           <div class="cover-left">
-            <div class="io-badge" style="margin: 0 auto 32px;">
-              <span class="gdot"></span> DevFest Quito
-            </div>
             <h1 class="cover-title title-in">
-              <span class="neon-cyan">WebMCP</span><br />
-              <span class="neon-magenta">en acción</span>
+              <span class="cyan">WebMCP</span><br />
+              <span>en acción</span>
             </h1>
           </div>
 
           <div class="cover-viz">
-            <div class="orbit-cube">
-              <div class="wf-cube">
-                <div class="face f1"></div>
-                <div class="face f2"></div>
-                <div class="face f3"></div>
-                <div class="face f4"></div>
-                <div class="face f5"></div>
-                <div class="face f6"></div>
-              </div>
+            <div class="ecommerce-hero" aria-hidden="true">
+              <svg class="headphones-line-art" viewBox="0 0 260 180" role="img" aria-label="Auriculares Orbit">
+                <path class="hp-main" d="M55 102v-8c0-45 31-76 75-76s75 31 75 76v8" />
+                <path class="hp-main hp-band-inner" d="M78 91c5-29 25-48 52-48s47 19 52 48" />
+                <rect class="hp-cup" x="38" y="96" width="40" height="58" rx="16" />
+                <rect class="hp-cup" x="182" y="96" width="40" height="58" rx="16" />
+                <path class="hp-pad" d="M54 111v29" />
+                <path class="hp-pad" d="M206 111v29" />
+                <path class="hp-line" d="M86 156h88" />
+              </svg>
             </div>
             <div class="floating-tag ft1">// change_color()</div>
             <div class="floating-tag ft2">// add_to_cart()</div>
@@ -176,7 +219,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 01 <span class="total">/ 19</span> ]</div>
+          <div class="counter">[ 01 <span class="total">/ 25</span> ]</div>
         </div>
       </section>
 
@@ -184,7 +227,6 @@
         <div class="mesh-bg" style="opacity: 0.35"></div>
         <div class="frame">
           <div class="eyebrow">// DevFest Quito</div>
-          <h1 class="title"><span class="cyan">Software</span> Engineer</h1>
 
           <div class="bio-row">
             <div class="bio-photo-wrap">
@@ -207,9 +249,10 @@
 
             <div>
               <div class="mono" style="font-size: 22px; color: var(--grid-cyan); letter-spacing: 0.16em; text-transform: uppercase;">
-                // IDENTITY
+                // QUIÉN SOY
               </div>
               <div class="bio-name">Vanessa <span class="last">Aristizabal</span></div>
+              <div class="bio-role">Software Engineer</div>
 
               <ul class="bio-list">
                 <li><span class="tick">[01]</span><span>Ingeniera de Sistemas &amp; Magíster en Ingeniería.</span></li>
@@ -220,12 +263,6 @@
             </div>
           </div>
 
-          <div class="qa-qr-row" style="justify-content: flex-start; margin-top: 18px;">
-            <div class="qa-qr-item">
-              <img src="assets/qrcode_repo.png" alt="QR código" class="qa-qr-img" />
-              <div class="qa-qr-label">// Código de esta charla</div>
-            </div>
-          </div>
         </div>
         <div class="footer-bar">
           <div class="socials">
@@ -233,12 +270,12 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 02 <span class="total">/ 19</span> ]</div>
+          <div class="counter">[ 02 <span class="total">/ 25</span> ]</div>
         </div>
       </section>
 
       <section data-label="03 El problema">
-        <div class="frame">
+        <div class="frame centered-vs-slide">
           <div style="position: absolute; top: 70px; right: 70px; z-index: 0; opacity: 0.4;">
             <div class="wf-sphere red" style="width: 160px; height: 160px">
               <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
@@ -292,35 +329,20 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 03 <span class="total">/ 19</span> ]</div>
+          <div class="counter">[ 03 <span class="total">/ 25</span> ]</div>
         </div>
       </section>
 
       <section data-label="04 Qué es MCP">
         <div class="mesh-bg" style="opacity: 0.3"></div>
-        <div class="frame">
+        <div class="frame centered-copy-frame">
           <div class="eyebrow">// DevFest Quito</div>
           <h1 class="title">Model Context <span class="cyan">Protocol</span></h1>
 
-          <p style="font-size: 30px; line-height: 1.35; max-width: 820px; margin-top: 30px;">
+          <p class="centered-copy">
             Un <b>estándar abierto</b> para que los modelos descubran e invoquen capacidades externas —
             sin construir una integración a medida por cada aplicación.
           </p>
-
-          <div class="vt-features" style="margin-top: 40px;">
-            <div class="vtf vtf-active">
-              <div class="vtf-k">01 · ORIGEN</div>
-              <div class="vtf-d">Creado por Anthropic, noviembre 2024. Especificación abierta en <code>modelcontextprotocol.io</code>.</div>
-            </div>
-            <div class="vtf">
-              <div class="vtf-k">02 · ADOPCIÓN</div>
-              <div class="vtf-d">Hoy lo integran OpenAI, Google, Microsoft, editores como VS Code y Zed, y una comunidad enorme de servidores.</div>
-            </div>
-            <div class="vtf">
-              <div class="vtf-k">03 · ANALOGÍA</div>
-              <div class="vtf-d">Se describe como el <b>«USB-C de las apps de IA»</b>: un puerto estándar en vez de un cable distinto por integración.</div>
-            </div>
-          </div>
         </div>
         <div class="footer-bar">
           <div class="socials">
@@ -328,13 +350,13 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 04 <span class="total">/ 19</span> ]</div>
+          <div class="counter">[ 04 <span class="total">/ 25</span> ]</div>
         </div>
       </section>
 
       <section data-label="05 Primitivos">
         <div class="mesh-bg" style="opacity: 0.3"></div>
-        <div class="frame">
+        <div class="frame centered-benefits-slide">
           <div class="eyebrow">// DevFest Quito</div>
           <h1 class="title">Los 3 primitivos <span class="cyan">de MCP</span></h1>
 
@@ -362,63 +384,31 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 05 <span class="total">/ 19</span> ]</div>
+          <div class="counter">[ 05 <span class="total">/ 25</span> ]</div>
         </div>
       </section>
 
       <section data-label="06 Arquitectura MCP">
         <div class="mesh-bg" style="opacity: 0.3"></div>
-        <div class="frame">
+        <div class="frame centered-benefits-slide architecture-cards-slide">
           <div class="eyebrow">// DevFest Quito</div>
           <h1 class="title">Host, <span class="cyan">Client</span> y <span class="magenta">Server</span></h1>
 
-          <div class="arch-wrap">
-            <div class="pipeline">
-              <div class="pipe-step">
-                <div class="pipe-num">01</div>
-                <div class="pipe-body">
-                  <div class="label">// HOST</div>
-                  <div class="name">La app de IA: Claude Desktop, tu IDE, tu CLI</div>
-                  <div class="sub">Orquesta la conversación con el usuario.</div>
-                </div>
-                <div class="pipe-tech">app</div>
-              </div>
-              <div class="pipe-step engine">
-                <div class="pipe-num">02</div>
-                <div class="pipe-body">
-                  <div class="label">// CLIENT</div>
-                  <div class="name">Vive dentro del host</div>
-                  <div class="sub">Conexión <code class="mono" style="color: var(--grid-cyan)">1:1</code> con cada server.</div>
-                </div>
-                <div class="pipe-tech">1:1</div>
-              </div>
-              <div class="pipe-step engine">
-                <div class="pipe-num">03</div>
-                <div class="pipe-body">
-                  <div class="label">// SERVER</div>
-                  <div class="name">Proceso separado</div>
-                  <div class="sub">Expone <code class="mono" style="color: var(--accent-magenta)">tools</code>, <code class="mono" style="color: var(--accent-magenta)">resources</code> y <code class="mono" style="color: var(--accent-magenta)">prompts</code>.</div>
-                </div>
-                <div class="pipe-tech">backend</div>
-              </div>
+          <div class="benefits architecture-cards">
+            <div class="benefit-card">
+              <div class="k">// 01 · HOST</div>
+              <div class="v">La app de IA</div>
+              <div class="d">Claude Desktop, tu IDE o tu CLI. Orquesta la conversación con el usuario.</div>
             </div>
-
-            <div class="benefits">
-              <div class="benefit-card">
-                <div class="k">// stdio</div>
-                <div class="v">Local</div>
-                <div class="d">El cliente lanza el server como subproceso y le habla por stdin/stdout.</div>
-              </div>
-              <div class="benefit-card">
-                <div class="k">// HTTP + SSE</div>
-                <div class="v">Remoto</div>
-                <div class="d">Para servers que no viven en la misma máquina que el cliente.</div>
-              </div>
-              <div class="benefit-card">
-                <div class="k">// JSON-RPC</div>
-                <div class="v">Mensajería</div>
-                <div class="d">Ambos transportes hablan el mismo protocolo de mensajes.</div>
-              </div>
+            <div class="benefit-card">
+              <div class="k">// 02 · CLIENT</div>
+              <div class="v">Vive dentro del host</div>
+              <div class="d">Mantiene una conexión <code>1:1</code> con cada server.</div>
+            </div>
+            <div class="benefit-card">
+              <div class="k">// 03 · SERVER</div>
+              <div class="v">Proceso separado</div>
+              <div class="d">Expone <code>tools</code>, <code>resources</code> y <code>prompts</code>.</div>
             </div>
           </div>
         </div>
@@ -428,64 +418,88 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 06 <span class="total">/ 19</span> ]</div>
+          <div class="counter">[ 06 <span class="total">/ 25</span> ]</div>
         </div>
       </section>
 
-      <section data-label="07 MCP Server">
-        <div class="frame">
+      <section data-label="07 Transportes MCP">
+        <div class="mesh-bg" style="opacity: 0.3"></div>
+        <div class="frame centered-benefits-slide transport-slide">
+          <div class="eyebrow">// DevFest Quito</div>
+          <h1 class="title">Transportes y <span class="cyan">mensajería</span></h1>
+
+          <div class="benefits">
+            <div class="benefit-card">
+              <div class="k">// stdio</div>
+              <div class="v">Local</div>
+              <div class="d">El cliente lanza el server como subproceso y le habla por stdin/stdout.</div>
+            </div>
+            <div class="benefit-card">
+              <div class="k">// HTTP + SSE</div>
+              <div class="v">Remoto</div>
+              <div class="d">Para servers que no viven en la misma máquina que el cliente.</div>
+            </div>
+            <div class="benefit-card">
+              <div class="k">// JSON-RPC</div>
+              <div class="v">Mensajería</div>
+              <div class="d">Ambos transportes hablan el mismo protocolo de mensajes.</div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bar">
+          <div class="socials">
+            <span>Instagram <b>vanessamarelycode</b></span>
+            <span>YouTube <b>vanessamarely</b></span>
+            <span>GitHub <b>vanessamarely</b></span>
+          </div>
+          <div class="counter">[ 07 <span class="total">/ 25</span> ]</div>
+        </div>
+      </section>
+
+      <section data-label="08 MCP Server">
+        <div class="frame split-text-slide">
           <div class="eyebrow">// DevFest Quito</div>
           <h1 class="title">MCP <span class="cyan">Server</span></h1>
 
-          <div class="code-dive">
-            <div class="copy-col">
-              <p style="font-size: 22px; line-height: 1.4; margin: 0 0 14px 0;">
-                Un proceso independiente de cualquier app de IA. Es el backend real: inventario,
-                base de datos, APIs internas.
-              </p>
+          <p class="centered-copy big-copy">
+            Un proceso independiente de cualquier app de IA. Es el backend real: inventario,
+            base de datos y APIs internas.
+          </p>
+        </div>
+        <div class="footer-bar">
+          <div class="socials">
+            <span>Instagram <b>vanessamarelycode</b></span>
+            <span>YouTube <b>vanessamarely</b></span>
+            <span>GitHub <b>vanessamarely</b></span>
+          </div>
+          <div class="counter">[ 08 <span class="total">/ 25</span> ]</div>
+        </div>
+      </section>
 
-              <div class="vt-features">
-                <div class="vtf vtf-active">
-                  <div class="vtf-k">01 · DECLARA</div>
-                  <div class="vtf-d">Nombre, descripción y JSON Schema por cada tool.</div>
-                </div>
-                <div class="vtf">
-                  <div class="vtf-k">02 · AGNÓSTICO</div>
-                  <div class="vtf-d">No sabe (ni le importa) qué LLM lo está usando.</div>
-                </div>
-                <div class="vtf">
-                  <div class="vtf-k">03 · REAL</div>
-                  <div class="vtf-d">Descuenta stock de verdad — no es una simulación.</div>
-                </div>
-              </div>
+      <section data-label="09 MCP Server código">
+        <div class="frame split-code-slide">
+          <div class="eyebrow">// DevFest Quito</div>
+          <h1 class="title">Tool: <span class="cyan">place_order</span></h1>
+
+          <div class="code-frame">
+            <div class="titlebar">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <div>mcp-server/src/tools.ts</div>
             </div>
-
-            <div class="code-frame">
-              <div class="titlebar">
-                <div class="dots"><span></span><span></span><span></span></div>
-                <div>mcp-server/src/tools.ts</div>
-              </div>
-              <pre class="code-block summary-code"><span class="tok-var">server</span>.<span class="tok-fn">registerTool</span>(
+            <pre class="code-block summary-code"><span class="tok-var">server</span>.<span class="tok-fn">registerTool</span>(
   <span class="tok-str">"place_order"</span>,
   {
-    <span class="tok-var">description</span>:
-      <span class="tok-str">"Descuenta stock real."</span>,
+    <span class="tok-var">description</span>: <span class="tok-str">"Descuenta stock real."</span>,
     <span class="tok-var">inputSchema</span>: {
       <span class="tok-var">product_id</span>: <span class="tok-var">z</span>.<span class="tok-fn">string</span>(),
-      <span class="tok-var">quantity</span>: <span class="tok-var">z</span>
-        .<span class="tok-fn">number</span>().<span class="tok-fn">positive</span>(),
+      <span class="tok-var">quantity</span>: <span class="tok-var">z</span>.<span class="tok-fn">number</span>().<span class="tok-fn">positive</span>(),
     },
   },
   <span class="tok-key">async</span> ({ <span class="tok-var">product_id</span>, <span class="tok-var">quantity</span> }) =&gt; {
-    <span class="tok-key">const</span> <span class="tok-var">r</span> = <span class="tok-fn">placeOrder</span>(
-      <span class="tok-var">product_id</span>, <span class="tok-var">quantity</span>
-    );
-    <span class="tok-key">return</span> <span class="tok-fn">ok</span>(
-      <span class="tok-str">`Pedido </span>${<span class="tok-var">r</span>.<span class="tok-var">id</span>}<span class="tok-str"> confirmado.`</span>
-    );
+    <span class="tok-key">const</span> <span class="tok-var">r</span> = <span class="tok-fn">placeOrder</span>(<span class="tok-var">product_id</span>, <span class="tok-var">quantity</span>);
+    <span class="tok-key">return</span> <span class="tok-fn">ok</span>(<span class="tok-str">`Pedido ${r.id} confirmado.`</span>);
   }
 );</pre>
-            </div>
           </div>
         </div>
         <div class="footer-bar">
@@ -494,66 +508,46 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 07 <span class="total">/ 19</span> ]</div>
+          <div class="counter">[ 09 <span class="total">/ 25</span> ]</div>
         </div>
       </section>
 
-      <section data-label="08 MCP Client">
-        <div class="frame">
+      <section data-label="10 MCP Client">
+        <div class="frame split-text-slide">
           <div class="eyebrow">// DevFest Quito</div>
           <h1 class="title">MCP <span class="magenta">Client</span></h1>
 
-          <div class="code-dive">
-            <div class="copy-col">
-              <p style="font-size: 22px; line-height: 1.4; margin: 0 0 14px 0;">
-                Conecta al server, le pasa sus tools al LLM y ejecuta lo que el modelo decida llamar.
-              </p>
+          <p class="centered-copy big-copy">
+            Conecta al server, le pasa sus tools al LLM y ejecuta lo que el modelo decida llamar.
+          </p>
+        </div>
+        <div class="footer-bar">
+          <div class="socials">
+            <span>Instagram <b>vanessamarelycode</b></span>
+            <span>YouTube <b>vanessamarely</b></span>
+            <span>GitHub <b>vanessamarely</b></span>
+          </div>
+          <div class="counter">[ 10 <span class="total">/ 25</span> ]</div>
+        </div>
+      </section>
 
-              <div class="vt-features">
-                <div class="vtf vtf-active">
-                  <div class="vtf-k">01 · DISCOVER</div>
-                  <div class="vtf-d"><code>client.listTools()</code> — pide la lista de tools del server.</div>
-                </div>
-                <div class="vtf">
-                  <div class="vtf-k">02 · DECIDE</div>
-                  <div class="vtf-d">El LLM (Claude o Gemini) decide si necesita llamar alguna.</div>
-                </div>
-                <div class="vtf">
-                  <div class="vtf-k">03 · EXECUTE</div>
-                  <div class="vtf-d"><code>client.callTool()</code> ejecuta y devuelve el resultado al LLM.</div>
-                </div>
-              </div>
+      <section data-label="11 MCP Client flujo">
+        <div class="frame split-text-slide client-flow-slide">
+          <div class="eyebrow">// DevFest Quito</div>
+          <h1 class="title">Cómo decide el <span class="magenta">client</span></h1>
 
-              <div class="api-notes">
-                <div class="api-note"><b>!</b> Mismo protocolo con <b>Claude o Gemini</b> — un adaptador intercambiable, cero cambios en el server.</div>
-              </div>
+          <div class="vt-features feature-row">
+            <div class="vtf vtf-active">
+              <div class="vtf-k">01 · DISCOVER</div>
+              <div class="vtf-d"><code>client.listTools()</code> pide la lista de tools.</div>
             </div>
-
-            <div class="code-frame">
-              <div class="titlebar">
-                <div class="dots"><span></span><span></span><span></span></div>
-                <div>mcp-client/src/llm/claude.ts</div>
-              </div>
-              <pre class="code-block summary-code"><span class="tok-key">for</span> (<span class="tok-key">let</span> <span class="tok-var">i</span> = <span class="tok-var">0</span>; <span class="tok-var">i</span> &lt; <span class="tok-var">MAX_STEPS</span>; <span class="tok-var">i</span>++) {
-  <span class="tok-key">const</span> <span class="tok-var">res</span> = <span class="tok-key">await</span> <span class="tok-var">client</span>
-    .<span class="tok-var">messages</span>.<span class="tok-fn">create</span>({
-      <span class="tok-var">model</span>, <span class="tok-var">tools</span>, <span class="tok-var">history</span>,
-    });
-
-  <span class="tok-key">const</span> <span class="tok-var">calls</span> = <span class="tok-var">res</span>.<span class="tok-var">content</span>
-    .<span class="tok-fn">filter</span>(<span class="tok-var">b</span> =&gt;
-      <span class="tok-var">b</span>.<span class="tok-var">type</span> === <span class="tok-str">"tool_use"</span>);
-
-  <span class="tok-key">if</span> (!<span class="tok-var">calls</span>.<span class="tok-var">length</span>)
-    <span class="tok-key">return</span> <span class="tok-var">res</span>.<span class="tok-var">text</span>;
-
-  <span class="tok-key">for</span> (<span class="tok-key">const</span> <span class="tok-var">c</span> <span class="tok-key">of</span> <span class="tok-var">calls</span>) {
-    <span class="tok-key">const</span> <span class="tok-var">t</span> = <span class="tok-key">await</span> <span class="tok-fn">runTool</span>(
-      <span class="tok-var">c</span>.<span class="tok-var">name</span>, <span class="tok-var">c</span>.<span class="tok-var">input</span>
-    );
-    <span class="tok-var">history</span>.<span class="tok-fn">push</span>(<span class="tok-var">t</span>);
-  }
-}</pre>
+            <div class="vtf">
+              <div class="vtf-k">02 · DECIDE</div>
+              <div class="vtf-d">Claude o Gemini decide si necesita llamar alguna.</div>
+            </div>
+            <div class="vtf">
+              <div class="vtf-k">03 · EXECUTE</div>
+              <div class="vtf-d"><code>client.callTool()</code> devuelve el resultado al LLM.</div>
             </div>
           </div>
         </div>
@@ -563,16 +557,55 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 08 <span class="total">/ 19</span> ]</div>
+          <div class="counter">[ 11 <span class="total">/ 25</span> ]</div>
         </div>
       </section>
 
-      <section data-label="09 Demo 1">
+      <section data-label="12 MCP Client código">
+        <div class="frame split-code-slide">
+          <div class="eyebrow">// DevFest Quito</div>
+          <h1 class="title">Loop de <span class="magenta">tool calls</span></h1>
+
+          <div class="code-frame">
+            <div class="titlebar">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <div>mcp-client/src/llm/claude.ts</div>
+            </div>
+            <pre class="code-block summary-code"><span class="tok-key">for</span> (<span class="tok-key">let</span> <span class="tok-var">i</span> = <span class="tok-num">0</span>; <span class="tok-var">i</span> &lt; <span class="tok-var">MAX_STEPS</span>; <span class="tok-var">i</span>++) {
+  <span class="tok-key">const</span> <span class="tok-var">res</span> = <span class="tok-key">await</span> <span class="tok-var">client</span>.<span class="tok-var">messages</span>.<span class="tok-fn">create</span>({
+    <span class="tok-var">model</span>, <span class="tok-var">tools</span>, <span class="tok-var">history</span>,
+  });
+
+  <span class="tok-key">const</span> <span class="tok-var">calls</span> = <span class="tok-var">res</span>.<span class="tok-var">content</span>
+    .<span class="tok-fn">filter</span>(<span class="tok-var">b</span> =&gt; <span class="tok-var">b</span>.<span class="tok-var">type</span> === <span class="tok-str">"tool_use"</span>);
+
+  <span class="tok-key">if</span> (!<span class="tok-var">calls</span>.<span class="tok-var">length</span>) <span class="tok-key">return</span> <span class="tok-var">res</span>.<span class="tok-var">text</span>;
+  <span class="tok-key">for</span> (<span class="tok-key">const</span> <span class="tok-var">c</span> <span class="tok-key">of</span> <span class="tok-var">calls</span>) <span class="tok-key">await</span> <span class="tok-fn">runTool</span>(<span class="tok-var">c</span>.<span class="tok-var">name</span>, <span class="tok-var">c</span>.<span class="tok-var">input</span>);
+}</pre>
+          </div>
+        </div>
+        <div class="footer-bar">
+          <div class="socials">
+            <span>Instagram <b>vanessamarelycode</b></span>
+            <span>YouTube <b>vanessamarely</b></span>
+            <span>GitHub <b>vanessamarely</b></span>
+          </div>
+          <div class="counter">[ 12 <span class="total">/ 25</span> ]</div>
+        </div>
+      </section>
+
+      <section data-label="13 Demo 1">
         <div class="mesh-bg"></div>
-        <div class="frame qa-frame">
-          <div class="eyebrow" style="margin-bottom: 24px;">// LIVE</div>
-          <div class="qa-mega neon-cyan" style="font-size: 44px;">Veámoslo en vivo</div>
-          <div class="qa-thanks">mcp-server + mcp-client — un pedido real, de principio a fin.</div>
+        <div class="frame live-frame">
+          <div class="eyebrow">// DevFest Quito</div>
+          <h1 class="title live-title"><span class="cyan">Veámoslo</span> en vivo</h1>
+          <p class="live-sub">mcp-server + mcp-client — un pedido real, de principio a fin.</p>
+          <div class="qa-qr-row live-qr-row">
+            <div class="qa-qr-item">
+              <img src="assets/qrcode_demo.png" alt="QR demo" class="qa-qr-img" />
+              <div class="qa-qr-label">// Pruébalo tú mismo</div>
+            </div>
+          </div>
           <div style="position: absolute; top: 70px; right: 100px; opacity: 0.6;">
             <div class="wf-sphere" style="width: 160px; height: 160px">
               <div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div>
@@ -586,35 +619,20 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 09 <span class="total">/ 19</span> ]</div>
+          <div class="counter">[ 13 <span class="total">/ 25</span> ]</div>
         </div>
       </section>
 
-      <section data-label="10 Qué es WebMCP">
+      <section data-label="14 Qué es WebMCP">
         <div class="mesh-bg" style="opacity: 0.3"></div>
-        <div class="frame">
+        <div class="frame split-text-slide webmcp-intro-slide">
           <div class="eyebrow">// DevFest Quito</div>
           <h1 class="title">¿Y si las tools viven <span class="cyan">en la página</span>?</h1>
 
-          <p style="font-size: 28px; line-height: 1.4; max-width: 820px; margin-top: 24px;">
+          <p class="centered-copy big-copy">
             <b>WebMCP</b> es un estándar web propuesto para que cualquier sitio exponga su
             funcionalidad como tools — invocables por un agente que corre dentro del propio navegador.
           </p>
-
-          <div class="vt-features" style="margin-top: 30px;">
-            <div class="vtf vtf-active">
-              <div class="vtf-k">01 · DÓNDE</div>
-              <div class="vtf-d">Las tools se registran en la propia página con <code>document.modelContext</code>.</div>
-            </div>
-            <div class="vtf">
-              <div class="vtf-k">02 · QUIÉN</div>
-              <div class="vtf-d">Impulsado por el equipo de Chrome, dentro del Web Machine Learning Community Group.</div>
-            </div>
-            <div class="vtf">
-              <div class="vtf-k">03 · ESTADO</div>
-              <div class="vtf-d">Borrador activo — <code>github.com/webmachinelearning/webmcp</code>, evolucionando en público.</div>
-            </div>
-          </div>
         </div>
         <div class="footer-bar">
           <div class="socials">
@@ -622,58 +640,27 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 10 <span class="total">/ 19</span> ]</div>
+          <div class="counter">[ 14 <span class="total">/ 25</span> ]</div>
         </div>
       </section>
 
-      <section data-label="11 API WebMCP">
-        <div class="frame">
+      <section data-label="15 API WebMCP">
+        <div class="frame split-text-slide client-flow-slide">
           <div class="eyebrow">// DevFest Quito</div>
           <h1 class="title"><span class="magenta">document</span>.modelContext</h1>
 
-          <div class="code-dive">
-            <div class="copy-col">
-              <div class="vt-features">
-                <div class="vtf vtf-active">
-                  <div class="vtf-k">01 · REGISTER</div>
-                  <div class="vtf-d"><code>registerTool(tool, &#123; signal &#125;)</code> — nombre, descripción y JSON Schema. El <code>signal</code> permite desregistrarla al navegar.</div>
-                </div>
-                <div class="vtf">
-                  <div class="vtf-k">02 · DISCOVER</div>
-                  <div class="vtf-d"><code>getTools()</code> — lista las tools registradas en la página en ese momento.</div>
-                </div>
-                <div class="vtf">
-                  <div class="vtf-k">03 · EXECUTE</div>
-                  <div class="vtf-d"><code>executeTool(tool, args)</code> — la invoca y espera su resultado.</div>
-                </div>
-              </div>
-              <div class="api-notes">
-                <div class="api-note"><b>!</b> Origin isolation + <code>permissions policy</code>: una tool solo es visible para agentes del mismo origen, salvo <code>allow="tools"</code> explícito.</div>
-                <div class="api-note"><b>!</b> Las tools cambian con la navegación — evento <code>toolchange</code> para reaccionar en vivo.</div>
-              </div>
+          <div class="vt-features feature-row">
+            <div class="vtf vtf-active">
+              <div class="vtf-k">01 · REGISTER</div>
+              <div class="vtf-d"><code>registerTool()</code> declara nombre, descripción y schema.</div>
             </div>
-
-            <div class="code-frame">
-              <div class="titlebar">
-                <div class="dots"><span></span><span></span><span></span></div>
-                <div>web/src/product-tools.ts</div>
-              </div>
-              <pre class="code-block summary-code"><span class="tok-key">await</span> <span class="tok-var">document</span>.<span class="tok-var">modelContext</span>
-  .<span class="tok-fn">registerTool</span>(
-    {
-      <span class="tok-var">name</span>: <span class="tok-str">"change_color"</span>,
-      <span class="tok-var">description</span>:
-        <span class="tok-str">"Cambia el color"</span>,
-      <span class="tok-var">inputSchema</span>: {
-        <span class="tok-var">hex</span>: { <span class="tok-var">type</span>: <span class="tok-str">"string"</span> }
-      },
-      <span class="tok-fn">execute</span>({ <span class="tok-var">hex</span> }) {
-        <span class="tok-var">scene</span>.<span class="tok-fn">setColor</span>(<span class="tok-var">hex</span>);
-        <span class="tok-key">return</span> <span class="tok-fn">ok</span>(<span class="tok-str">"listo"</span>);
-      },
-    },
-    { <span class="tok-var">signal</span> }
-  );</pre>
+            <div class="vtf">
+              <div class="vtf-k">02 · DISCOVER</div>
+              <div class="vtf-d"><code>getTools()</code> lista lo disponible en la página.</div>
+            </div>
+            <div class="vtf">
+              <div class="vtf-k">03 · EXECUTE</div>
+              <div class="vtf-d"><code>executeTool()</code> invoca la acción visible para el usuario.</div>
             </div>
           </div>
         </div>
@@ -683,61 +670,90 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 11 <span class="total">/ 19</span> ]</div>
+          <div class="counter">[ 15 <span class="total">/ 25</span> ]</div>
         </div>
       </section>
 
-      <section data-label="12 Novedad PR 253">
-        <div class="frame">
-          <div class="eyebrow">// DevFest Quito · ACTUALIZACIÓN</div>
+      <section data-label="16 API WebMCP código">
+        <div class="frame split-code-slide">
+          <div class="eyebrow">// DevFest Quito</div>
+          <h1 class="title">Registrar una <span class="magenta">tool</span></h1>
+
+          <div class="code-frame">
+            <div class="titlebar">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <div>web/src/product-tools.ts</div>
+            </div>
+            <pre class="code-block summary-code"><span class="tok-key">await</span> <span class="tok-var">document</span>.<span class="tok-var">modelContext</span>.<span class="tok-fn">registerTool</span>(
+  {
+    <span class="tok-var">name</span>: <span class="tok-str">"change_color"</span>,
+    <span class="tok-var">description</span>: <span class="tok-str">"Cambia el color"</span>,
+    <span class="tok-var">inputSchema</span>: {
+      <span class="tok-var">type</span>: <span class="tok-str">"object"</span>,
+      <span class="tok-var">properties</span>: { <span class="tok-var">hex</span>: { <span class="tok-var">type</span>: <span class="tok-str">"string"</span> } },
+      <span class="tok-var">required</span>: [<span class="tok-str">"hex"</span>],
+    },
+    <span class="tok-fn">execute</span>({ <span class="tok-var">hex</span> }) {
+      <span class="tok-var">scene</span>.<span class="tok-fn">setColor</span>(<span class="tok-var">hex</span>);
+      <span class="tok-key">return</span> <span class="tok-fn">ok</span>(<span class="tok-str">"listo"</span>);
+    },
+  },
+  { <span class="tok-var">signal</span> }
+);</pre>
+          </div>
+        </div>
+        <div class="footer-bar">
+          <div class="socials">
+            <span>Instagram <b>vanessamarelycode</b></span>
+            <span>YouTube <b>vanessamarely</b></span>
+            <span>GitHub <b>vanessamarely</b></span>
+          </div>
+          <div class="counter">[ 16 <span class="total">/ 25</span> ]</div>
+        </div>
+      </section>
+
+      <section data-label="17 Novedad PR 253">
+        <div class="frame split-text-slide">
+          <div class="eyebrow">// DevFest Quito</div>
           <h1 class="title">Lo último: <span class="cyan">tools de debugging</span></h1>
 
-          <div class="code-dive">
-            <div class="copy-col">
-              <p style="font-size: 21px; line-height: 1.4; margin: 0 0 14px 0;">
-                <code>webmachinelearning/webmcp <b>#253</b></code> — agrega un miembro
-                <code>debugging</code> a <code>ToolAnnotations</code> para separar tools
-                pensadas para desarrolladores de las tools para el usuario final.
-              </p>
+          <p class="centered-copy big-copy">
+            <code>webmachinelearning/webmcp <b>#253</b></code> agrega <code>debugging</code> a
+            <code>ToolAnnotations</code> para separar tools de desarrollo de las tools para usuarios.
+          </p>
+        </div>
+        <div class="footer-bar">
+          <div class="socials">
+            <span>Instagram <b>vanessamarelycode</b></span>
+            <span>YouTube <b>vanessamarely</b></span>
+            <span>GitHub <b>vanessamarely</b></span>
+          </div>
+          <div class="counter">[ 17 <span class="total">/ 25</span> ]</div>
+        </div>
+      </section>
 
-              <div class="vt-features">
-                <div class="vtf vtf-active">
-                  <div class="vtf-k">01 · PROBLEMA</div>
-                  <div class="vtf-d">DevTools, frameworks de testing y utilidades de debug se mezclaban con las tools reales de la app.</div>
-                </div>
-                <div class="vtf">
-                  <div class="vtf-k">02 · SOLUCIÓN</div>
-                  <div class="vtf-d">Un booleano <code>debugging: true</code> — un agente de propósito general puede filtrarlas.</div>
-                </div>
-                <div class="vtf">
-                  <div class="vtf-k">03 · POR QUÉ ESE NOMBRE</div>
-                  <div class="vtf-d"><code>debugging</code>, no <code>debuggingHint</code>: es una categorización definitiva del propósito, no un hint de comportamiento.</div>
-                </div>
-              </div>
+      <section data-label="18 Debugging código">
+        <div class="frame split-code-slide">
+          <div class="eyebrow">// DevFest Quito</div>
+          <h1 class="title"><span class="cyan">debugging</span>: true</h1>
 
-              <div class="api-notes">
-                <div class="api-note"><b>!</b> Discusión abierta: <code>debugging: true</code> probablemente no debería combinarse con <code>consequentialHint</code> — parecen mutuamente excluyentes.</div>
-              </div>
+          <div class="code-frame">
+            <div class="titlebar">
+              <div class="dots"><span></span><span></span><span></span></div>
+              <div>webmcp · ToolAnnotations</div>
             </div>
-
-            <div class="code-frame">
-              <div class="titlebar">
-                <div class="dots"><span></span><span></span><span></span></div>
-                <div>webmcp · ToolAnnotations</div>
-              </div>
-              <pre class="code-block summary-code"><span class="tok-var">document</span>.<span class="tok-var">modelContext</span>.<span class="tok-fn">registerTool</span>({
+            <pre class="code-block summary-code"><span class="tok-var">document</span>.<span class="tok-var">modelContext</span>.<span class="tok-fn">registerTool</span>({
   <span class="tok-var">name</span>: <span class="tok-str">"run_test_suite"</span>,
   <span class="tok-var">description</span>: <span class="tok-str">"Corre los tests de la app."</span>,
   <span class="tok-var">annotations</span>: {
-    <span class="tok-var">debugging</span>: <span class="tok-key">true</span><span class="tok-com">, // ← nuevo en #253</span>
+    <span class="tok-var">debugging</span>: <span class="tok-key">true</span><span class="tok-com">, // nuevo en #253</span>
   },
   <span class="tok-var">inputSchema</span>: { <span class="tok-var">type</span>: <span class="tok-str">"object"</span> },
-  <span class="tok-key">async</span> <span class="tok-fn">execute</span>() { <span class="tok-comment"></span><span class="tok-com">/* … */</span> },
+  <span class="tok-key">async</span> <span class="tok-fn">execute</span>() { <span class="tok-com">/* ... */</span> },
 });
 
-<span class="tok-com">// un agente "para usuarios" puede</span>
-<span class="tok-com">// ignorar toda tool con debugging: true</span></pre>
-            </div>
+<span class="tok-com">// un agente para usuarios puede</span>
+<span class="tok-com">// ignorar tools con debugging: true</span></pre>
           </div>
         </div>
         <div class="footer-bar">
@@ -746,12 +762,12 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 12 <span class="total">/ 19</span> ]</div>
+          <div class="counter">[ 18 <span class="total">/ 25</span> ]</div>
         </div>
       </section>
 
-      <section data-label="13 MCP vs WebMCP">
-        <div class="frame">
+      <section data-label="19 MCP vs WebMCP">
+        <div class="frame centered-vs-slide comparison-slide">
           <div class="eyebrow">// DevFest Quito</div>
           <h1 class="title">MCP <span class="cyan">vs.</span> WebMCP</h1>
 
@@ -792,16 +808,16 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 13 <span class="total">/ 19</span> ]</div>
+          <div class="counter">[ 19 <span class="total">/ 25</span> ]</div>
         </div>
       </section>
 
-      <section data-label="14 Se complementan">
-        <div class="frame">
+      <section data-label="20 Se complementan">
+        <div class="frame complement-slide">
           <div class="eyebrow">// DevFest Quito</div>
           <h1 class="title">No compiten. <span class="magenta">Se complementan.</span></h1>
 
-          <div class="problem-grid" style="margin-top: 30px;">
+          <div class="problem-grid complement-grid">
             <div class="problem-body">
               <p><b class="hl">En el navegador — WebMCP.</b> Configurar un producto, navegar el catálogo, llenar el carrito — tools que actúan sobre lo que el usuario ya está viendo.</p>
               <p><b class="hl">En el backend — MCP.</b> Confirmar el pedido de verdad, verificar stock real, cobrar — tools que protegen datos y reglas de negocio detrás de un servidor.</p>
@@ -810,7 +826,7 @@
               </p>
             </div>
 
-            <div class="alert-panel">
+            <div class="alert-panel demo-alert-panel">
               <div class="alert-head"><span class="blink"></span><span>[i] EN NUESTRO DEMO</span></div>
               <ul class="alert-list">
                 <li><b>web/</b> — tools WebMCP por producto y a nivel tienda.</li>
@@ -826,17 +842,17 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 14 <span class="total">/ 19</span> ]</div>
+          <div class="counter">[ 20 <span class="total">/ 25</span> ]</div>
         </div>
       </section>
 
-      <section data-label="15 Demo 2">
+      <section data-label="21 Demo 2">
         <div class="mesh-bg"></div>
-        <div class="frame qa-frame">
-          <div class="eyebrow" style="margin-bottom: 24px;">// LIVE</div>
-          <div class="qa-mega neon-magenta" style="font-size: 44px;">Veámoslo en vivo</div>
-          <div class="qa-thanks" style="margin-bottom: 24px;">La tienda WebMCP — un agente controlando la página en tiempo real.</div>
-          <div class="qa-qr-row">
+        <div class="frame live-frame">
+          <div class="eyebrow">// DevFest Quito</div>
+          <h1 class="title live-title"><span class="magenta">Veámoslo</span> en vivo</h1>
+          <p class="live-sub">La tienda WebMCP — un agente controlando la página en tiempo real.</p>
+          <div class="qa-qr-row live-qr-row">
             <div class="qa-qr-item">
               <img src="assets/qrcode_demo.png" alt="QR demo" class="qa-qr-img" />
               <div class="qa-qr-label">// Pruébalo tú mismo</div>
@@ -859,13 +875,13 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 15 <span class="total">/ 19</span> ]</div>
+          <div class="counter">[ 21 <span class="total">/ 25</span> ]</div>
         </div>
       </section>
 
-      <section data-label="16 Arquitectura demo">
+      <section data-label="22 Arquitectura demo">
         <div class="mesh-bg" style="opacity: 0.3"></div>
-        <div class="frame">
+        <div class="frame build-slide">
           <div class="eyebrow">// DevFest Quito</div>
           <h1 class="title">Lo que <span class="cyan">construimos</span></h1>
 
@@ -897,12 +913,12 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 16 <span class="total">/ 19</span> ]</div>
+          <div class="counter">[ 22 <span class="total">/ 25</span> ]</div>
         </div>
       </section>
 
-      <section data-label="17 Checklist">
-        <div class="frame">
+      <section data-label="23 Checklist">
+        <div class="frame takeaway-slide">
           <div style="position: absolute; top: 90px; right: 100px; z-index: 0; opacity: 0.5;">
             <div class="wf-torus" style="width: 160px; height: 160px">
               <div class="tring t1"></div><div class="tring t2"></div>
@@ -912,34 +928,26 @@
           <div class="eyebrow">// DevFest Quito</div>
           <h1 class="title">Para <span class="cyan">llevarte</span></h1>
 
-          <div class="check-grid">
-            <div class="check-item">
-              <div class="box">01</div>
-              <div>
-                <div class="k">MCP estandariza el backend</div>
-                <div class="d">Cómo un agente habla con tus sistemas: inventario, base de datos, APIs internas.</div>
-              </div>
+          <div class="benefits takeaway-cards">
+            <div class="benefit-card">
+              <div class="k">// 01</div>
+              <div class="v">MCP estandariza el backend</div>
+              <div class="d">Cómo un agente habla con tus sistemas: inventario, base de datos, APIs internas.</div>
             </div>
-            <div class="check-item">
-              <div class="box">02</div>
-              <div>
-                <div class="k">WebMCP estandariza el navegador</div>
-                <div class="d">Cómo un agente habla con la página que el usuario está viendo ahora mismo.</div>
-              </div>
+            <div class="benefit-card">
+              <div class="k">// 02</div>
+              <div class="v">WebMCP estandariza el navegador</div>
+              <div class="d">Cómo un agente habla con la página que el usuario está viendo ahora mismo.</div>
             </div>
-            <div class="check-item">
-              <div class="box">03</div>
-              <div>
-                <div class="k">Comparten vocabulario, no capa</div>
-                <div class="d">Tools, JSON Schema — pero resuelven problemas distintos, no compiten.</div>
-              </div>
+            <div class="benefit-card">
+              <div class="k">// 03</div>
+              <div class="v">Comparten vocabulario, no capa</div>
+              <div class="d">Tools, JSON Schema — pero resuelven problemas distintos, no compiten.</div>
             </div>
-            <div class="check-item">
-              <div class="box">04</div>
-              <div>
-                <div class="k">Un mismo LLM maneja los dos</div>
-                <div class="d">Tal como lo vimos en la demo — Claude o Gemini, mismo agente.</div>
-              </div>
+            <div class="benefit-card">
+              <div class="k">// 04</div>
+              <div class="v">Un mismo LLM maneja los dos</div>
+              <div class="d">Tal como lo vimos en la demo — Claude o Gemini, mismo agente.</div>
             </div>
           </div>
         </div>
@@ -949,15 +957,15 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 17 <span class="total">/ 19</span> ]</div>
+          <div class="counter">[ 23 <span class="total">/ 25</span> ]</div>
         </div>
       </section>
 
-      <section data-label="18 Recursos">
+      <section data-label="24 Recursos">
         <div class="mesh-bg" style="opacity: 0.4"></div>
-        <div class="frame demo-cta-frame">
-          <div class="demo-cta-eyebrow">// DevFest Quito</div>
-          <h1 class="demo-cta-title">Para seguir <span class="neon-cyan">explorando</span></h1>
+        <div class="frame demo-cta-frame resources-frame">
+          <div class="eyebrow">// DevFest Quito</div>
+          <h1 class="title">Para seguir <span class="cyan">explorando</span></h1>
           <div class="demo-cta-sub">Spec, propuestas y el código de esta charla — todo en abierto.</div>
 
           <div class="demo-cta-grid">
@@ -997,29 +1005,29 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 18 <span class="total">/ 19</span> ]</div>
+          <div class="counter">[ 24 <span class="total">/ 25</span> ]</div>
         </div>
       </section>
 
-      <section data-label="19 Q&amp;A">
+      <section data-label="25 Q&amp;A">
         <div class="mesh-bg"></div>
         <div class="frame qa-frame">
-          <div class="eyebrow" style="margin-bottom: 32px;">// END OF TRANSMISSION</div>
-          <div class="qa-mega neon-cyan">¿Preguntas?</div>
+          <div class="eyebrow">// DevFest Quito</div>
+          <h1 class="title qa-title"><span class="cyan">¿Preguntas?</span></h1>
           <div class="qa-thanks">¡Muchas gracias por acompañarme en esta charla!</div>
 
-          <div class="qa-socials">
-            <div class="col">
-              <div class="net">Instagram</div>
-              <div class="handle">@vanessamarelycode</div>
+          <div class="demo-cta-grid qa-social-cards">
+            <div class="demo-cta-card">
+              <div class="k">// Instagram</div>
+              <div class="v">@vanessamarelycode</div>
             </div>
-            <div class="col">
-              <div class="net">YouTube</div>
-              <div class="handle">vanessamarely</div>
+            <div class="demo-cta-card">
+              <div class="k">// YouTube</div>
+              <div class="v">vanessamarely</div>
             </div>
-            <div class="col">
-              <div class="net">GitHub</div>
-              <div class="handle">vanessamarely</div>
+            <div class="demo-cta-card">
+              <div class="k">// GitHub</div>
+              <div class="v">vanessamarely</div>
             </div>
           </div>
           <div style="position: absolute; top: 80px; right: 120px; opacity: 0.7;">
@@ -1035,7 +1043,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 19 <span class="total">/ 19</span> ]</div>
+          <div class="counter">[ 25 <span class="total">/ 25</span> ]</div>
         </div>
       </section>
     </deck-stage>

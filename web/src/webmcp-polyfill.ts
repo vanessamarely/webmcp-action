@@ -15,7 +15,7 @@ import type {
 class ModelContextPolyfill extends EventTarget implements ModelContext {
   private tools = new Map<string, WebMcpToolDefinition>();
 
-  async registerTool(tool: WebMcpToolDefinition, options?: { signal?: AbortSignal }): Promise<void> {
+  async registerTool(tool: WebMcpToolDefinition, options?: { signal?: AbortSignal; exposedTo?: string[] }): Promise<void> {
     this.tools.set(tool.name, tool);
     this.dispatchEvent(new Event("toolchange"));
 
@@ -30,19 +30,22 @@ class ModelContextPolyfill extends EventTarget implements ModelContext {
       name,
       description,
       inputSchema,
+      origin: location.origin,
+      window,
     }));
   }
 
   async executeTool(
     tool: WebMcpRegisteredTool | string,
-    args: Record<string, unknown>
+    args: Record<string, unknown>,
+    options?: { signal?: AbortSignal }
   ): Promise<WebMcpToolResult> {
     const name = typeof tool === "string" ? tool : tool.name;
     const definition = this.tools.get(name);
     if (!definition) {
       return { content: [{ type: "text", text: `Tool no encontrada: ${name}` }], isError: true };
     }
-    return definition.execute(args);
+    return definition.execute(args, options);
   }
 }
 

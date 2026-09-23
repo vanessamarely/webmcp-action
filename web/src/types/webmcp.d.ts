@@ -16,24 +16,27 @@ export interface WebMcpToolDefinition<Args = any> {
   name: string;
   description: string;
   inputSchema: Record<string, unknown>;
-  execute(args: Args): Promise<WebMcpToolResult> | WebMcpToolResult;
+  execute(args: Args, options?: { signal?: AbortSignal }): Promise<WebMcpToolResult> | WebMcpToolResult;
 }
 
 export interface WebMcpRegisteredTool {
   name: string;
   description: string;
   inputSchema: Record<string, unknown>;
+  origin: string;
+  window: Window;
 }
 
 export interface ModelContext extends EventTarget {
   registerTool(
     tool: WebMcpToolDefinition,
-    options?: { signal?: AbortSignal }
+    options?: { signal?: AbortSignal; exposedTo?: string[] }
   ): Promise<void>;
-  getTools(): Promise<WebMcpRegisteredTool[]>;
+  getTools(options?: { fromOrigins?: string[] }): Promise<WebMcpRegisteredTool[]>;
   executeTool(
     tool: WebMcpRegisteredTool | string,
-    args: Record<string, unknown>
+    args: Record<string, unknown>,
+    options?: { signal?: AbortSignal }
   ): Promise<WebMcpToolResult>;
 }
 

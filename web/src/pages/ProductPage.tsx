@@ -71,9 +71,9 @@ export default function ProductPage(): JSX.Element {
       if (cancelled) return;
       agentRef.current = agent;
       setStatus(
-        agent
+        agent.mode === "prompt-api"
           ? { kind: "ready", text: "agente listo (Prompt API on-device)" }
-          : { kind: "fallback", text: "Prompt API no confirmada — se reintenta al escribir" }
+          : { kind: "fallback", text: "modo demo local — escribe para intentar Prompt API" }
       );
     })();
 
@@ -94,18 +94,15 @@ export default function ProductPage(): JSX.Element {
         // usuario para empezar a descargarse), lo intentamos justo aquí —
         // este handler corre dentro del click/Enter del usuario, así que
         // sí cuenta como gesto para LanguageModel.create().
-        if (!agentRef.current) {
+        if (!agentRef.current || agentRef.current.mode === "local") {
+          agentRef.current?.destroy();
           const agent = await WebMcpAgent.create();
           agentRef.current = agent;
           setStatus(
-            agent
+            agent.mode === "prompt-api"
               ? { kind: "ready", text: "agente listo (Prompt API on-device)" }
-              : { kind: "fallback", text: "Prompt API no disponible — usa los controles" }
+              : { kind: "fallback", text: "modo demo local — WebMCP activo" }
           );
-        }
-        if (!agentRef.current) {
-          appendLog("err", "El agente no está disponible en este navegador — usa los controles manuales.");
-          return;
         }
         await agentRef.current.handleUserMessage(message, appendLog);
       } finally {

@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import type { ProductDef } from "../products";
 import { PRODUCT_ICONS } from "../icons";
-import { tint } from "../color-utils";
 
 export default function ProductCard({ product }: { product: ProductDef }): JSX.Element {
   const navigate = useNavigate();
@@ -9,7 +8,42 @@ export default function ProductCard({ product }: { product: ProductDef }): JSX.E
 
   return (
     <button className="product-card" onClick={() => navigate(`/product/${product.id}`)}>
-      <div className="swatch" style={{ background: tint(product.accent, 0.55) }}>
+      <div className={`product-thumb product-thumb-${product.kind}`} style={{ "--thumb-accent": product.accent, "--thumb-color": product.defaultColor } as React.CSSProperties}>
+        <div className="thumb-stage">
+          {product.kind === "headphones" && (
+            <div className="mini-product mini-headphones" aria-hidden="true">
+              <span className="headband" />
+              <span className="cup left" />
+              <span className="cup right" />
+              <span className="pad left" />
+              <span className="pad right" />
+            </div>
+          )}
+          {product.kind === "smartwatch" && (
+            <div className="mini-product mini-watch" aria-hidden="true">
+              <span className="strap top" />
+              <span className="case" />
+              <span className="screen" />
+              <span className="strap bottom" />
+            </div>
+          )}
+          {product.kind === "backpack" && (
+            <div className="mini-product mini-backpack" aria-hidden="true">
+              <span className="handle" />
+              <span className="body" />
+              <span className="pocket" />
+              <span className="zip" />
+            </div>
+          )}
+          {product.kind === "lamp" && (
+            <div className="mini-product mini-lamp" aria-hidden="true">
+              <span className="shade" />
+              <span className="neck" />
+              <span className="base" />
+              <span className="glow" />
+            </div>
+          )}
+        </div>
         <div className="icon-badge">
           <Icon />
         </div>

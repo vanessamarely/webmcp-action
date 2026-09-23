@@ -81,6 +81,34 @@ function buildContactShadowTexture(): THREE.CanvasTexture {
   return new THREE.CanvasTexture(canvas);
 }
 
+function buildSceneBackgroundTexture(topHex: string, bottomHex: string): THREE.CanvasTexture {
+  const size = 512;
+  const canvas = document.createElement("canvas");
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext("2d")!;
+  const top = new THREE.Color(topHex);
+  const bottom = new THREE.Color(bottomHex);
+  const glow = new THREE.Color(topHex).lerp(new THREE.Color("#ffffff"), 0.38);
+
+  const linear = ctx.createLinearGradient(0, 0, 0, size);
+  linear.addColorStop(0, `#${top.getHexString()}`);
+  linear.addColorStop(1, `#${bottom.getHexString()}`);
+  ctx.fillStyle = linear;
+  ctx.fillRect(0, 0, size, size);
+
+  const radial = ctx.createRadialGradient(size * 0.5, size * 0.38, 0, size * 0.5, size * 0.38, size * 0.55);
+  radial.addColorStop(0, `rgba(${Math.round(glow.r * 255)},${Math.round(glow.g * 255)},${Math.round(glow.b * 255)},0.62)`);
+  radial.addColorStop(0.48, "rgba(255,255,255,0.24)");
+  radial.addColorStop(1, "rgba(255,255,255,0)");
+  ctx.fillStyle = radial;
+  ctx.fillRect(0, 0, size, size);
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  return texture;
+}
+
 function buildEngravingTexture(text: string): THREE.CanvasTexture {
   const canvas = document.createElement("canvas");
   canvas.width = 512;
@@ -332,6 +360,7 @@ export class ProductScene {
 
   private built: BuiltProduct | null = null;
   private contactShadow: THREE.Mesh;
+  private backgroundTexture: THREE.CanvasTexture | null = null;
   private cameraAnim: { from: THREE.Vector3; to: THREE.Vector3; fromTarget: THREE.Vector3; toTarget: THREE.Vector3; t: number } | null = null;
 
   constructor(container: HTMLElement) {
@@ -357,19 +386,21 @@ export class ProductScene {
     // Iluminación de 3 puntos (key / fill / rim) en vez de una sola luz
     // direccional plana — el fill frío y el rim dan volumen y un borde de
     // luz que separa el producto del fondo.
-    const key = new THREE.DirectionalLight(0xffffff, 1.5);
-    key.position.set(3, 4, 2);
+    const key = new THREE.DirectionalLight(0xffffff, 1.85);
+    key.position.set(3.2, 4.4, 2.4);
     this.scene.add(key);
 
-    const fill = new THREE.DirectionalLight(0xbcd4ff, 0.5);
+    const fill = new THREE.DirectionalLight(0xbcd4ff, 0.62);
     fill.position.set(-3, 1.2, -1.5);
     this.scene.add(fill);
 
-    const rim = new THREE.DirectionalLight(0xffffff, 0.7);
-    rim.position.set(-1.5, 2.5, -3);
+    const rim = new THREE.DirectionalLight(0xffffff, 1.05);
+    rim.position.set(-1.8, 2.7, -3.2);
     this.scene.add(rim);
 
-    this.scene.add(new THREE.AmbientLight(0xffffff, 0.18));
+    const topLight = new THREE.HemisphereLight(0xffffff, 0xd9e4ff, 0.58);
+    this.scene.add(topLight);
+    this.scene.add(new THREE.AmbientLight(0xffffff, 0.12));
 
     // Sombra de contacto "falsa" (textura con gradiente radial) bajo el
     // producto — más barata y siempre estable que un shadow map real, y
@@ -412,7 +443,12 @@ export class ProductScene {
   }
 
   setBackground(hex: string): void {
-    this.scene.background = new THREE.Color(hex);
+    this.backgroundTexture?.dispose();
+    const accent = new THREE.Color(hex);
+    const top = `#${accent.clone().lerp(new THREE.Color("#ffffff"), 0.55).getHexString()}`;
+    const bottom = `#${accent.clone().lerp(new THREE.Color("#f5f5f7"), 0.18).getHexString()}`;
+    this.backgroundTexture = buildSceneBackgroundTexture(top, bottom);
+    this.scene.background = this.backgroundTexture;
   }
 
   setAutoRotate(enabled: boolean, speed = 1.6): void {
@@ -462,6 +498,7 @@ export class ProductScene {
   dispose(): void {
     window.removeEventListener("resize", this.onResize);
     this.renderer.setAnimationLoop(null);
+    this.backgroundTexture?.dispose();
     this.renderer.dispose();
     this.container.removeChild(this.renderer.domElement);
   }

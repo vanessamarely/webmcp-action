@@ -148,7 +148,22 @@ header nav { display: flex; align-items: center; gap: 22px; }
   aspect-ratio: 5 / 4;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: var(--surface-alt);
+  background:
+    radial-gradient(circle at 58% 32%, rgba(255,255,255,0.96), rgba(255,255,255,0.2) 32%, transparent 54%),
+    linear-gradient(145deg, #f8f8fb, #e8eef7);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.04), var(--shadow-md);
+}
+.hero-viewport::after,
+.scene-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.18) 1px, transparent 1px),
+    linear-gradient(rgba(255,255,255,0.18) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(circle at 50% 45%, rgba(0,0,0,0.34), transparent 62%);
 }
 .hero-viewport-canvas { position: absolute; inset: 0; }
 .hero-hint {
@@ -191,26 +206,56 @@ header nav { display: flex; align-items: center; gap: 22px; }
   max-width: 1160px;
 }
 .product-card {
-  background: var(--surface-alt);
-  border: none;
+  background: linear-gradient(180deg, #ffffff 0%, var(--surface-alt) 100%);
+  border: 1px solid rgba(0, 0, 0, 0.055);
   border-radius: var(--radius-lg);
   padding: 28px 24px 24px;
   cursor: pointer;
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s, border-color 0.3s;
   text-align: left;
   color: inherit;
 }
-.product-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-.product-card .swatch {
+.product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: rgba(0, 113, 227, 0.18); }
+.product-card .product-thumb {
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 3;
   border-radius: var(--radius-md);
   margin-bottom: 20px;
   overflow: hidden;
+  background:
+    radial-gradient(circle at 34% 18%, rgba(255,255,255,0.96), transparent 30%),
+    radial-gradient(circle at 62% 58%, color-mix(in srgb, var(--thumb-accent) 24%, transparent), transparent 43%),
+    linear-gradient(145deg, color-mix(in srgb, var(--thumb-accent) 30%, #ffffff), color-mix(in srgb, var(--thumb-accent) 6%, #f6f7fb));
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.62), inset 0 -32px 52px rgba(0,0,0,0.055);
 }
-.product-card .swatch::after { content: none; }
-.product-card .swatch .icon-badge {
+.product-card .product-thumb::before {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.34);
+  filter: blur(18px);
+}
+.product-card .thumb-stage {
+  position: absolute;
+  inset: 18px 20px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product-card .thumb-stage::after {
+  content: "";
+  position: absolute;
+  left: 16%;
+  right: 16%;
+  bottom: 4%;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.18);
+  filter: blur(8px);
+}
+.product-card .icon-badge {
   position: absolute;
   top: 12px;
   left: 12px;
@@ -224,7 +269,33 @@ header nav { display: flex; align-items: center; gap: 22px; }
   justify-content: center;
   z-index: 1;
 }
-.product-card .swatch .icon-badge svg { width: 15px; height: 15px; color: var(--ink); }
+.product-card .icon-badge svg { width: 15px; height: 15px; color: var(--ink); }
+.mini-product { position: relative; z-index: 1; color: var(--thumb-color); filter: drop-shadow(0 18px 22px rgba(0,0,0,0.18)); }
+.mini-product span { position: absolute; display: block; }
+.mini-headphones { width: 150px; height: 116px; }
+.mini-headphones .headband { left: 25px; top: 4px; width: 100px; height: 82px; border: 15px solid currentColor; border-bottom: 0; border-radius: 80px 80px 0 0; }
+.mini-headphones .cup { top: 60px; width: 34px; height: 46px; border-radius: 15px; background: currentColor; }
+.mini-headphones .cup.left { left: 13px; transform: rotate(-5deg); }
+.mini-headphones .cup.right { right: 13px; transform: rotate(5deg); }
+.mini-headphones .pad { top: 69px; width: 18px; height: 29px; border-radius: 10px; background: rgba(29,29,31,0.72); }
+.mini-headphones .pad.left { left: 22px; }
+.mini-headphones .pad.right { right: 22px; }
+.mini-watch { width: 108px; height: 138px; }
+.mini-watch .strap { left: 36px; width: 36px; height: 48px; background: color-mix(in srgb, currentColor 72%, #111827); }
+.mini-watch .strap.top { top: 0; border-radius: 16px 16px 8px 8px; }
+.mini-watch .strap.bottom { bottom: 0; border-radius: 8px 8px 16px 16px; }
+.mini-watch .case { left: 20px; top: 39px; width: 68px; height: 62px; border-radius: 20px; background: #1d1d1f; box-shadow: inset 0 0 0 5px currentColor; }
+.mini-watch .screen { left: 34px; top: 53px; width: 40px; height: 34px; border-radius: 12px; background: linear-gradient(135deg, currentColor, #fff3b0); opacity: 0.92; }
+.mini-backpack { width: 116px; height: 132px; }
+.mini-backpack .handle { left: 39px; top: 2px; width: 38px; height: 28px; border: 8px solid color-mix(in srgb, currentColor 78%, #0f172a); border-bottom: 0; border-radius: 24px 24px 0 0; }
+.mini-backpack .body { left: 13px; top: 26px; width: 90px; height: 100px; border-radius: 24px 24px 18px 18px; background: currentColor; }
+.mini-backpack .pocket { left: 32px; top: 76px; width: 52px; height: 34px; border-radius: 12px; background: rgba(255,255,255,0.28); box-shadow: inset 0 0 0 2px rgba(29,29,31,0.08); }
+.mini-backpack .zip { left: 31px; top: 51px; width: 54px; height: 3px; border-radius: 3px; background: rgba(29,29,31,0.32); }
+.mini-lamp { width: 128px; height: 132px; }
+.mini-lamp .glow { left: 25px; top: 16px; width: 78px; height: 48px; border-radius: 50%; background: color-mix(in srgb, currentColor 28%, #ffffff); filter: blur(12px); opacity: 0.85; }
+.mini-lamp .shade { left: 30px; top: 12px; width: 68px; height: 46px; clip-path: polygon(18% 0, 82% 0, 100% 100%, 0 100%); background: currentColor; border-radius: 10px 10px 18px 18px; }
+.mini-lamp .neck { left: 61px; top: 55px; width: 8px; height: 48px; border-radius: 5px; background: #1d1d1f; transform: rotate(10deg); transform-origin: top; }
+.mini-lamp .base { left: 35px; top: 102px; width: 66px; height: 17px; border-radius: 999px 999px 8px 8px; background: #1d1d1f; }
 .card-top-row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
 .product-card h3 { margin: 0; font-size: 17px; font-weight: 590; letter-spacing: -0.015em; }
 .product-card .stock { font-size: 10.5px; color: var(--muted); white-space: nowrap; font-weight: 500; }
@@ -244,6 +315,14 @@ header nav { display: flex; align-items: center; gap: 22px; }
 
 /* ---------- PDP ---------- */
 .pdp-view { position: relative; flex: 1; display: flex; min-height: 0; background: var(--bg); }
+.pdp-view::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 28%, color-mix(in srgb, var(--product-accent) 18%, transparent), transparent 42%);
+  z-index: 1;
+}
 .scene-container { position: absolute; inset: 0; }
 
 .pdp-topbar { position: absolute; inset: 20px 20px auto; z-index: 5; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
