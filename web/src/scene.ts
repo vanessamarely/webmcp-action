@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
+import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 import type { ProductKind } from "./products";
 import type { Finish, FocusTarget } from "./state";
 
@@ -32,11 +33,52 @@ export const FOCUS_LABELS: Record<FocusTarget, string> = {
   close_up: "Detalle",
 };
 
+// Textura de ruido sutil, generada una sola vez y reutilizada como
+// roughnessMap en todos los materiales: rompe el "plástico CG" perfectamente
+// uniforme de un color sólido sin tocar la geometría ni depender de nada
+// externo (nada de red, nada de licencias que verificar).
+let noiseTexture: THREE.CanvasTexture | null = null;
+function getRoughnessNoise(): THREE.CanvasTexture {
+  if (noiseTexture) return noiseTexture;
+  const size = 128;
+  const canvas = document.createElement("canvas");
+  canvas.width = canvas.height = size;
+  const ctx = canvas.getContext("2d")!;
+  const img = ctx.createImageData(size, size);
+  for (let i = 0; i < img.data.length; i += 4) {
+    const v = 195 + Math.random() * 60;
+    img.data[i] = v;
+    img.data[i + 1] = v;
+    img.data[i + 2] = v;
+    img.data[i + 3] = 255;
+  }
+  ctx.putImageData(img, 0, 0);
+  noiseTexture = new THREE.CanvasTexture(canvas);
+  noiseTexture.wrapS = noiseTexture.wrapT = THREE.RepeatWrapping;
+  noiseTexture.repeat.set(6, 6);
+  return noiseTexture;
+}
+
 function makeMaterials(color: string): { primary: THREE.MeshPhysicalMaterial; secondary: THREE.MeshPhysicalMaterial } {
+  const roughnessMap = getRoughnessNoise();
   return {
-    primary: new THREE.MeshPhysicalMaterial({ color, roughness: 0.6, metalness: 0.1, clearcoat: 0 }),
-    secondary: new THREE.MeshPhysicalMaterial({ color: 0x1a1c22, roughness: 0.85, metalness: 0 }),
+    primary: new THREE.MeshPhysicalMaterial({ color, roughness: 0.6, metalness: 0.1, clearcoat: 0, roughnessMap, envMapIntensity: 1.15 }),
+    secondary: new THREE.MeshPhysicalMaterial({ color: 0x1a1c22, roughness: 0.85, metalness: 0, roughnessMap, envMapIntensity: 1.05 }),
   };
+}
+
+function buildContactShadowTexture(): THREE.CanvasTexture {
+  const size = 256;
+  const canvas = document.createElement("canvas");
+  canvas.width = canvas.height = size;
+  const ctx = canvas.getContext("2d")!;
+  const grad = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+  grad.addColorStop(0, "rgba(0,0,0,0.45)");
+  grad.addColorStop(0.55, "rgba(0,0,0,0.18)");
+  grad.addColorStop(1, "rgba(0,0,0,0)");
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, size, size);
+  return new THREE.CanvasTexture(canvas);
 }
 
 function buildEngravingTexture(text: string): THREE.CanvasTexture {
@@ -64,7 +106,7 @@ function buildHeadphones(color: string): BuiltProduct {
 
   const headbandGeo = new THREE.TorusGeometry(1.05, 0.055, 24, 64, Math.PI * 0.92);
   const headband = new THREE.Mesh(headbandGeo, primary);
-  headband.rotation.z = Math.PI + (Math.PI - Math.PI * 0.92) / 2;
+  headband.rotation.z = (Math.PI - Math.PI * 0.92) / 2;
   headband.position.y = 0.05;
   group.add(headband);
 
@@ -107,6 +149,55 @@ function buildHeadphones(color: string): BuiltProduct {
   };
 }
 
+function buildWatchFaceTexture(): THREE.CanvasTexture {
+  const size = 256;
+  const canvas = document.createElement("canvas");
+  canvas.width = canvas.height = size;
+  const ctx = canvas.getContext("2d")!;
+  const cx = size / 2;
+  const cy = size / 2;
+  const r = size * 0.42;
+
+  ctx.fillStyle = "#15171c";
+  ctx.beginPath();
+  ctx.arc(cx, cy, size / 2, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.strokeStyle = "rgba(255,255,255,0.55)";
+  ctx.lineWidth = 3;
+  for (let i = 0; i < 12; i++) {
+    const a = (i / 12) * Math.PI * 2;
+    ctx.beginPath();
+    ctx.moveTo(cx + Math.cos(a) * r, cy + Math.sin(a) * r);
+    ctx.lineTo(cx + Math.cos(a) * (r - 14), cy + Math.sin(a) * (r - 14));
+    ctx.stroke();
+  }
+
+  ctx.lineCap = "round";
+  ctx.strokeStyle = "#e8eaf0";
+  ctx.lineWidth = 7;
+  ctx.beginPath();
+  ctx.moveTo(cx, cy);
+  ctx.lineTo(cx + Math.cos(-Math.PI / 2 - 0.9) * r * 0.5, cy + Math.sin(-Math.PI / 2 - 0.9) * r * 0.5);
+  ctx.stroke();
+
+  ctx.strokeStyle = "#6ea8fe";
+  ctx.lineWidth = 5;
+  ctx.beginPath();
+  ctx.moveTo(cx, cy);
+  ctx.lineTo(cx + Math.cos(-Math.PI / 2 + 1.6) * r * 0.78, cy + Math.sin(-Math.PI / 2 + 1.6) * r * 0.78);
+  ctx.stroke();
+
+  ctx.fillStyle = "#6ea8fe";
+  ctx.beginPath();
+  ctx.arc(cx, cy, 6, 0, Math.PI * 2);
+  ctx.fill();
+
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.colorSpace = THREE.SRGBColorSpace;
+  return tex;
+}
+
 function buildSmartwatch(color: string): BuiltProduct {
   const { primary, secondary } = makeMaterials(color);
   const group = new THREE.Group();
@@ -115,8 +206,20 @@ function buildSmartwatch(color: string): BuiltProduct {
   face.rotation.x = Math.PI / 2;
   group.add(face);
 
+  const screen = new THREE.Mesh(
+    new THREE.CircleGeometry(0.44, 48),
+    new THREE.MeshStandardMaterial({ map: buildWatchFaceTexture(), roughness: 0.35, metalness: 0.1 })
+  );
+  screen.position.set(0, 0, 0.061);
+  group.add(screen);
+
   const bezel = new THREE.Mesh(new THREE.TorusGeometry(0.55, 0.045, 16, 48), primary);
   group.add(bezel);
+
+  const crown = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.1, 12), secondary);
+  crown.rotation.z = Math.PI / 2;
+  crown.position.set(0.58, -0.02, 0);
+  group.add(crown);
 
   for (const dir of [-1, 1]) {
     const strap = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.85, 0.08), secondary);
@@ -139,22 +242,31 @@ function buildBackpack(color: string): BuiltProduct {
   const { primary, secondary } = makeMaterials(color);
   const group = new THREE.Group();
 
-  const body = new THREE.Mesh(new THREE.BoxGeometry(1.15, 1.45, 0.55), primary);
+  const body = new THREE.Mesh(new RoundedBoxGeometry(1.15, 1.5, 0.55, 4, 0.12), primary);
   group.add(body);
 
-  const pocket = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.6, 0.16), secondary);
+  const pocket = new THREE.Mesh(new RoundedBoxGeometry(0.7, 0.62, 0.14, 3, 0.06), secondary);
   pocket.position.set(0, -0.25, 0.35);
   group.add(pocket);
 
+  const zip = new THREE.Mesh(
+    new THREE.BoxGeometry(0.62, 0.015, 0.01),
+    new THREE.MeshStandardMaterial({ color: 0x0c0d10, roughness: 0.4, metalness: 0.6 })
+  );
+  zip.position.set(0, 0.02, 0.43);
+  group.add(zip);
+
   const handle = new THREE.Mesh(new THREE.TorusGeometry(0.14, 0.03, 12, 24, Math.PI), secondary);
   handle.position.set(0, 0.78, 0);
-  handle.rotation.z = Math.PI;
   group.add(handle);
 
+  // Correas asomando por los costados (curvan desde atrás hacia el frente) —
+  // así se leen como mochila incluso en una vista de frente, sin taparse
+  // detrás del cuerpo ni sobresalir por arriba.
   for (const side of [-1, 1]) {
-    const strap = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.06, 1.3, 10), secondary);
-    strap.position.set(side * 0.4, 0.15, -0.32);
-    strap.rotation.x = 0.25;
+    const strap = new THREE.Mesh(new THREE.CapsuleGeometry(0.06, 0.55, 4, 8), secondary);
+    strap.position.set(side * 0.62, -0.15, -0.05);
+    strap.rotation.z = side * 0.1;
     group.add(strap);
   }
 
@@ -219,6 +331,7 @@ export class ProductScene {
   private container: HTMLElement;
 
   private built: BuiltProduct | null = null;
+  private contactShadow: THREE.Mesh;
   private cameraAnim: { from: THREE.Vector3; to: THREE.Vector3; fromTarget: THREE.Vector3; toTarget: THREE.Vector3; t: number } | null = null;
 
   constructor(container: HTMLElement) {
@@ -241,10 +354,37 @@ export class ProductScene {
     this.scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
     this.scene.background = new THREE.Color(0xf5f5f7);
 
-    const key = new THREE.DirectionalLight(0xffffff, 1.4);
+    // Iluminación de 3 puntos (key / fill / rim) en vez de una sola luz
+    // direccional plana — el fill frío y el rim dan volumen y un borde de
+    // luz que separa el producto del fondo.
+    const key = new THREE.DirectionalLight(0xffffff, 1.5);
     key.position.set(3, 4, 2);
     this.scene.add(key);
-    this.scene.add(new THREE.AmbientLight(0xffffff, 0.25));
+
+    const fill = new THREE.DirectionalLight(0xbcd4ff, 0.5);
+    fill.position.set(-3, 1.2, -1.5);
+    this.scene.add(fill);
+
+    const rim = new THREE.DirectionalLight(0xffffff, 0.7);
+    rim.position.set(-1.5, 2.5, -3);
+    this.scene.add(rim);
+
+    this.scene.add(new THREE.AmbientLight(0xffffff, 0.18));
+
+    // Sombra de contacto "falsa" (textura con gradiente radial) bajo el
+    // producto — más barata y siempre estable que un shadow map real, y
+    // le da peso al objeto aunque esté "flotando" en el encuadre.
+    this.contactShadow = new THREE.Mesh(
+      new THREE.PlaneGeometry(1, 1),
+      new THREE.MeshBasicMaterial({
+        map: buildContactShadowTexture(),
+        transparent: true,
+        depthWrite: false,
+        opacity: 0.6,
+      })
+    );
+    this.contactShadow.rotation.x = -Math.PI / 2;
+    this.scene.add(this.contactShadow);
 
     window.addEventListener("resize", this.onResize);
     this.renderer.setAnimationLoop(() => this.tick());
@@ -258,6 +398,13 @@ export class ProductScene {
     }
     this.built = BUILDERS[kind](color);
     this.scene.add(this.built.group);
+
+    const box = new THREE.Box3().setFromObject(this.built.group);
+    const size = box.getSize(new THREE.Vector3());
+    const footprint = Math.max(size.x, size.z) * 1.2;
+    this.contactShadow.scale.set(footprint, footprint, 1);
+    this.contactShadow.position.set(0, box.min.y + 0.01, 0);
+
     const overview = this.built.shots.overview!;
     this.camera.position.copy(overview.position);
     this.controls.target.copy(overview.target);

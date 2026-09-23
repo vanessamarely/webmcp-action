@@ -14,5 +14,18 @@ export async function callWebMcpTool(
   if (!tool) {
     return { content: [{ type: "text", text: `Tool no encontrada: ${name}` }], isError: true };
   }
-  return document.modelContext.executeTool(tool, args);
+
+  try {
+    return await document.modelContext.executeTool(tool, args);
+  } catch (err) {
+    // Compatibilidad: algunas builds tempranas de Chrome (la API sigue en
+    // borrador) esperan los args como JSON string en vez del objeto que
+    // pide el spec — "Failed to parse input arguments" es justo el error
+    // que tira esa build cuando le pasamos el objeto directo. Reintentamos
+    // una vez con el string antes de rendirnos.
+    const msg = err instanceof Error ? err.message : String(err);
+    if (!/parse input arguments/i.test(msg)) throw err;
+    console.warn(`[webmcp] "${name}" rechazó args como objeto, reintentando como JSON string:`, err);
+    return await document.modelContext.executeTool(tool, JSON.stringify(args) as unknown as Record<string, unknown>);
+  }
 }
