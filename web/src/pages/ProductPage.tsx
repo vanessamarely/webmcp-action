@@ -110,6 +110,7 @@ export default function ProductPage(): JSX.Element {
   return (
     <div className="pdp-view" style={{ "--product-accent": product.accent } as CSSProperties}>
       <div className="scene-container" ref={containerRef} />
+      <span className="pdp-hint">Arrastra para girar</span>
 
       <div className="pdp-topbar">
         <div className="hud">

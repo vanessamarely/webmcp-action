@@ -268,6 +268,11 @@ export class ProductScene {
     this.scene.background = new THREE.Color(hex);
   }
 
+  setAutoRotate(enabled: boolean, speed = 1.6): void {
+    this.controls.autoRotate = enabled;
+    this.controls.autoRotateSpeed = speed;
+  }
+
   setColor(hex: string): void {
     this.built?.primaryMaterial.color.set(hex);
   }
