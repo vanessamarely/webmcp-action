@@ -3282,9 +3282,9 @@ html.light-mode .deck-ctrl:hover {
   border-color: rgba(0, 119, 160, 0.85);
 }
 html.light-mode .deck-ctrl[data-active] {
-  background: rgba(123, 0, 204, 0.12);
-  border-color: rgba(123, 0, 204, 0.6);
-  color: #3d006e;
+  background: #5a0099;
+  border-color: #5a0099;
+  color: #ffffff;
 }
 
 html.light-mode .glass {
