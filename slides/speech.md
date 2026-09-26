@@ -88,7 +88,7 @@ La API actual gira alrededor de `document.modelContext`: registrar tools, descub
 La tool declara `name`, `description`, `inputSchema` y `execute`. Lo importante es reutilizar la lógica que ya usa la interfaz, en lugar de crear una segunda implementación para el agente.
 
 ## 18. Hints para agentes
-WebMCP sigue siendo una propuesta en evolución. Sus annotations pueden comunicar pistas sobre el comportamiento de una tool, como `debugging`, `readOnlyHint` o `consequentialHint`.
+WebMCP sigue siendo una propuesta en evolución. Sus `ToolAnnotations` pueden comunicar pistas sobre el comportamiento de una tool; en el draft actual, `debugging` marca las tools pensadas para desarrollo y tooling, no para el flujo normal del usuario final.
 
 ## 19. Debugging: código
 Una tool de diagnóstico puede marcarse como `debugging: true`. Así un agente orientado a usuarios puede distinguirla de las tools que forman parte del flujo normal.
