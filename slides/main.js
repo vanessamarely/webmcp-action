@@ -35,8 +35,11 @@
     const btnTheme = document.getElementById('ctrl-theme');
     const lblTheme = document.getElementById('ctrl-theme-label');
     const themeIcon = document.getElementById('ctrl-theme-icon');
-    let lightMode = false;
-    try { lightMode = localStorage.getItem(THEME_KEY) === '1'; } catch (e) { }
+    const requestedTheme = new URLSearchParams(location.search).get('theme');
+    let lightMode = requestedTheme === 'light';
+    try {
+        if (!requestedTheme) lightMode = localStorage.getItem(THEME_KEY) === '1';
+    } catch (e) { }
 
     const applyTheme = () => {
         if (lightMode) {
