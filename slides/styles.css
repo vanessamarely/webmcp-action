@@ -3181,6 +3181,12 @@ pre.code-block {
   fill: none;
   stroke-width: 2;
 }
+#ctrl-theme {
+  padding-inline: 10px;
+}
+#ctrl-theme-label {
+  display: none;
+}
 @media print {
   .deck-controls {
     display: none !important;
