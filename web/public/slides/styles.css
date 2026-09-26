@@ -3295,3 +3295,34 @@ html.light-mode .pill.magenta {
 }
 
 html.light-mode .mesh-bg { opacity: 0.15 !important; }
+
+/* Shared surfaces need explicit overrides because the dark theme uses fixed
+   rgba values in several slide components. */
+html.light-mode .benefit-card,
+html.light-mode .vs-col,
+html.light-mode .code-frame,
+html.light-mode .demo-cta-card,
+html.light-mode .webmcp-node,
+html.light-mode .confirmation-gate,
+html.light-mode .pipeline,
+html.light-mode .eco-matrix,
+html.light-mode .vtf,
+html.light-mode .alert-panel {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(0, 119, 160, 0.35);
+  color: var(--ink);
+}
+
+html.light-mode .benefit-card .v,
+html.light-mode .vs-col h3,
+html.light-mode .demo-cta-card .v,
+html.light-mode .eco-matrix h3,
+html.light-mode .eco-tech .row .name,
+html.light-mode .pipe-body .name {
+  color: var(--ink);
+}
+
+html.light-mode .code-frame .titlebar {
+  background: rgba(226, 232, 240, 0.95);
+  color: var(--ink);
+}
