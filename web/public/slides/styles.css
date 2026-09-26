@@ -3338,3 +3338,13 @@ html.light-mode .code-frame .titlebar {
   background: rgba(226, 232, 240, 0.95);
   color: var(--ink);
 }
+
+html.light-mode .bio-name,
+html.light-mode .alert-list li b,
+html.light-mode .demo-cta-card .d a {
+  color: var(--ink);
+}
+
+html.light-mode .alert-list li {
+  color: #7a2942;
+}
