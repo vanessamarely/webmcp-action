@@ -107,6 +107,26 @@
       .architecture-cards .benefit-card .v { font-size: 20px; margin-bottom: 5px; line-height: 1.15; }
       .architecture-cards .benefit-card .d { font-size: 14px; line-height: 1.3; }
       .architecture-cards .benefit-card .d code { font-size: 13px; color: var(--grid-cyan); }
+      .webmcp-architecture-slide { justify-content: center; align-items: center; text-align: center; padding-top: 62px; padding-bottom: 82px; }
+      .webmcp-architecture-slide .title { margin: 0 0 10px; }
+      .webmcp-architecture-sub { margin: 0 0 22px; font-size: 16px; color: var(--ink-dim); }
+      .webmcp-architecture { display: grid; grid-template-columns: 1fr 86px 1.35fr 86px 1fr; align-items: center; width: min(920px, 100%); }
+      .webmcp-node { min-height: 150px; padding: 18px 16px; display: flex; flex-direction: column; justify-content: center; gap: 8px; background: rgba(2, 6, 23, 0.9); border: 1px solid var(--rule-strong); border-radius: 5px; text-align: left; }
+      .webmcp-node.browser { border-color: var(--grid-cyan); box-shadow: 0 0 24px rgba(0, 242, 255, 0.1); }
+      .webmcp-node.agent { border-color: var(--accent-magenta); box-shadow: 0 0 24px rgba(189, 0, 255, 0.1); }
+      .webmcp-node .k { color: var(--grid-cyan); font: 700 12px "JetBrains Mono", monospace; letter-spacing: 0.08em; }
+      .webmcp-node.agent .k { color: var(--accent-magenta); }
+      .webmcp-node .v { color: var(--ink); font-size: 20px; font-weight: 700; }
+      .webmcp-node .d { color: var(--ink-dim); font-size: 14px; line-height: 1.3; }
+      .webmcp-link { position: relative; height: 2px; background: var(--grid-cyan); }
+      .webmcp-link.reverse { background: var(--accent-magenta); }
+      .webmcp-link::after { content: ""; position: absolute; top: -4px; right: -1px; border-left: 9px solid currentColor; border-top: 5px solid transparent; border-bottom: 5px solid transparent; color: inherit; animation: webmcp-pulse 1.6s ease-in-out infinite; }
+      .webmcp-link.reverse::after { right: auto; left: -1px; }
+      .webmcp-link-label { position: absolute; left: 50%; top: -24px; transform: translateX(-50%); white-space: nowrap; color: var(--ink-dim); font: 12px "JetBrains Mono", monospace; }
+      .webmcp-architecture-note { margin-top: 18px; color: var(--ink); font-size: 17px; }
+      .webmcp-architecture-note code { color: var(--grid-cyan); }
+      @keyframes webmcp-pulse { 0%, 100% { opacity: .45; transform: translateX(0); } 50% { opacity: 1; transform: translateX(5px); } }
+      @media (max-width: 760px) { .webmcp-architecture { grid-template-columns: 1fr; gap: 28px; } .webmcp-link { width: 2px; height: 28px; justify-self: center; } .webmcp-link::after, .webmcp-link.reverse::after { top: auto; bottom: -1px; left: -4px; right: auto; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 9px solid currentColor; border-bottom: 0; } .webmcp-link-label { top: 5px; left: 16px; transform: none; } }
 
       .demo-cta-frame { justify-content: center; align-items: center; text-align: center; padding-top: 58px; padding-bottom: 72px; }
       .demo-cta-eyebrow { font-size: 15px; margin-bottom: 14px; letter-spacing: 0.24em; }
@@ -219,7 +239,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 01 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 01 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
@@ -270,7 +290,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 02 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 02 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
@@ -329,7 +349,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 03 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 03 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
@@ -350,7 +370,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 04 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 04 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
@@ -384,7 +404,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 05 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 05 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
@@ -418,7 +438,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 06 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 06 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
@@ -452,7 +472,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 07 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 07 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
@@ -472,7 +492,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 08 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 08 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
@@ -508,7 +528,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 09 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 09 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
@@ -527,7 +547,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 10 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 10 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
@@ -557,7 +577,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 11 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 11 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
@@ -590,7 +610,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 12 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 12 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
@@ -619,7 +639,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 13 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 13 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
@@ -640,11 +660,54 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 14 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 14 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
-      <section data-label="15 API WebMCP">
+      <section data-label="15 Arquitectura WebMCP">
+        <div class="mesh-bg" style="opacity: 0.3"></div>
+        <div class="frame webmcp-architecture-slide">
+          <div class="eyebrow">// DevFest Quito</div>
+          <h1 class="title">Arquitectura <span class="cyan">WebMCP</span></h1>
+          <p class="webmcp-architecture-sub">La página es la superficie de tools: el agente y la UI comparten el mismo navegador.</p>
+
+          <div class="webmcp-architecture">
+            <div class="webmcp-node browser">
+              <div class="k">// 01 · PÁGINA</div>
+              <div class="v">UI + estado</div>
+              <div class="d">Catálogo, carrito y configurador que el usuario ya está viendo.</div>
+            </div>
+            <div class="webmcp-link">
+              <span class="webmcp-link-label">getTools()</span>
+            </div>
+            <div class="webmcp-node agent">
+              <div class="k">// 02 · AGENTE</div>
+              <div class="v">Prompt API</div>
+              <div class="d">Descubre las tools y decide cuándo invocarlas dentro del navegador.</div>
+            </div>
+            <div class="webmcp-link reverse">
+              <span class="webmcp-link-label">executeTool()</span>
+            </div>
+            <div class="webmcp-node browser">
+              <div class="k">// 03 · CONTRATO</div>
+              <div class="v">modelContext</div>
+              <div class="d">JSON Schema, permisos y acciones visibles para el usuario.</div>
+            </div>
+          </div>
+
+          <div class="webmcp-architecture-note"><code>document.modelContext</code> conecta intención → acción, sin scraping ni MCP Server separado.</div>
+        </div>
+        <div class="footer-bar">
+          <div class="socials">
+            <span>Instagram <b>vanessamarelycode</b></span>
+            <span>YouTube <b>vanessamarely</b></span>
+            <span>GitHub <b>vanessamarely</b></span>
+          </div>
+          <div class="counter">[ 15 <span class="total">/ 26</span> ]</div>
+        </div>
+      </section>
+
+      <section data-label="16 API WebMCP">
         <div class="frame split-text-slide client-flow-slide">
           <div class="eyebrow">// DevFest Quito</div>
           <h1 class="title"><span class="magenta">document</span>.modelContext</h1>
@@ -670,11 +733,11 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 15 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 16 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
-      <section data-label="16 API WebMCP código">
+      <section data-label="17 API WebMCP código">
         <div class="frame split-code-slide">
           <div class="eyebrow">// DevFest Quito</div>
           <h1 class="title">Registrar una <span class="magenta">tool</span></h1>
@@ -708,11 +771,11 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 16 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 17 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
-      <section data-label="17 Novedad PR 253">
+      <section data-label="18 Novedad PR 253">
         <div class="frame split-text-slide">
           <div class="eyebrow">// DevFest Quito</div>
           <h1 class="title">Lo último: <span class="cyan">tools de debugging</span></h1>
@@ -728,11 +791,11 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 17 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 18 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
-      <section data-label="18 Debugging código">
+      <section data-label="19 Debugging código">
         <div class="frame split-code-slide">
           <div class="eyebrow">// DevFest Quito</div>
           <h1 class="title"><span class="cyan">debugging</span>: true</h1>
@@ -762,11 +825,11 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 18 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 19 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
-      <section data-label="19 MCP vs WebMCP">
+      <section data-label="20 MCP vs WebMCP">
         <div class="frame centered-vs-slide comparison-slide">
           <div class="eyebrow">// DevFest Quito</div>
           <h1 class="title">MCP <span class="cyan">vs.</span> WebMCP</h1>
@@ -808,11 +871,11 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 19 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 20 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
-      <section data-label="20 Se complementan">
+      <section data-label="21 Se complementan">
         <div class="frame complement-slide">
           <div class="eyebrow">// DevFest Quito</div>
           <h1 class="title">No compiten. <span class="magenta">Se complementan.</span></h1>
@@ -842,11 +905,11 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 20 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 21 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
-      <section data-label="21 Demo 2">
+      <section data-label="22 Demo 2">
         <div class="mesh-bg"></div>
         <div class="frame live-frame">
           <div class="eyebrow">// DevFest Quito</div>
@@ -875,11 +938,11 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 21 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 22 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
-      <section data-label="22 Arquitectura demo">
+      <section data-label="23 Arquitectura demo">
         <div class="mesh-bg" style="opacity: 0.3"></div>
         <div class="frame build-slide">
           <div class="eyebrow">// DevFest Quito</div>
@@ -913,11 +976,11 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 22 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 23 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
-      <section data-label="23 Checklist">
+      <section data-label="24 Checklist">
         <div class="frame takeaway-slide">
           <div style="position: absolute; top: 90px; right: 100px; z-index: 0; opacity: 0.5;">
             <div class="wf-torus" style="width: 160px; height: 160px">
@@ -957,11 +1020,11 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 23 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 24 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
-      <section data-label="24 Recursos">
+      <section data-label="25 Recursos">
         <div class="mesh-bg" style="opacity: 0.4"></div>
         <div class="frame demo-cta-frame resources-frame">
           <div class="eyebrow">// DevFest Quito</div>
@@ -1005,11 +1068,11 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 24 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 25 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
 
-      <section data-label="25 Q&amp;A">
+      <section data-label="26 Q&amp;A">
         <div class="mesh-bg"></div>
         <div class="frame qa-frame">
           <div class="eyebrow">// DevFest Quito</div>
@@ -1043,7 +1106,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 25 <span class="total">/ 25</span> ]</div>
+          <div class="counter">[ 26 <span class="total">/ 26</span> ]</div>
         </div>
       </section>
     </deck-stage>
