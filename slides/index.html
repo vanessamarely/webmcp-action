@@ -125,6 +125,7 @@
       .webmcp-link-label { position: absolute; left: 50%; top: -24px; transform: translateX(-50%); white-space: nowrap; color: var(--ink-dim); font: 12px "JetBrains Mono", monospace; }
       .webmcp-architecture-note { margin-top: 18px; color: var(--ink); font-size: 17px; }
       .webmcp-architecture-note code { color: var(--grid-cyan); }
+      .webmcp-status { display: block; margin-top: 14px; color: var(--ink-dim); font-size: 15px; }
       .tool-explorer { width: min(920px, 100%); margin-top: 18px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
       .tool-trigger { appearance: none; padding: 10px 12px; text-align: left; color: var(--ink); background: rgba(0, 242, 255, 0.07); border: 1px solid var(--rule-strong); border-radius: 4px; font: 700 13px "JetBrains Mono", monospace; cursor: pointer; }
       .tool-trigger:hover, .tool-trigger[data-active] { color: #020617; background: var(--grid-cyan); }
@@ -484,9 +485,9 @@
               <div class="d">El cliente lanza el server como subproceso y le habla por stdin/stdout.</div>
             </div>
             <div class="benefit-card">
-              <div class="k">// HTTP + SSE</div>
+              <div class="k">// Streamable HTTP</div>
               <div class="v">Remoto</div>
-              <div class="d">Para servers que no viven en la misma máquina que el cliente.</div>
+              <div class="d">Para servers remotos; SSE queda como transporte histórico/compatibilidad.</div>
             </div>
             <div class="benefit-card">
               <div class="k">// JSON-RPC</div>
@@ -680,7 +681,8 @@
 
           <p class="centered-copy big-copy">
             <b>WebMCP</b> es un estándar web propuesto para que cualquier sitio exponga su
-            funcionalidad como tools — invocables por un agente que corre dentro del propio navegador.
+            funcionalidad como tools — invocables por un agente compatible, incluido el agente del navegador.
+            <span class="webmcp-status">Estado: propuesta en evolución · Origin Trial en Chrome 149 · flag local para desarrollo.</span>
           </p>
         </div>
         <div class="footer-bar">
@@ -711,8 +713,8 @@
             </div>
             <div class="webmcp-node agent">
               <div class="k">// 02 · AGENTE</div>
-              <div class="v">Prompt API</div>
-              <div class="d">Descubre las tools y decide cuándo invocarlas dentro del navegador.</div>
+              <div class="v">Agente compatible</div>
+              <div class="d">Observa las tools disponibles y decide cuándo invocarlas dentro del navegador.</div>
             </div>
             <div class="webmcp-link reverse">
               <span class="webmcp-link-label">executeTool()</span>
@@ -754,7 +756,7 @@
             </div>
             <div class="vtf">
               <div class="vtf-k">02 · DISCOVER</div>
-              <div class="vtf-d"><code>getTools()</code> lista lo disponible en la página.</div>
+              <div class="vtf-d"><code>getTools()</code> lista tools para agentes JavaScript in-page.</div>
             </div>
             <div class="vtf">
               <div class="vtf-k">03 · EXECUTE</div>
@@ -813,11 +815,11 @@
       <section data-label="18 Novedad PR 253">
         <div class="frame split-text-slide">
           <div class="eyebrow">// DevFest Quito</div>
-          <h1 class="title">Lo último: <span class="cyan">tools de debugging</span></h1>
+          <h1 class="title">Hints para <span class="cyan">agentes</span></h1>
 
           <p class="centered-copy big-copy">
-            <code>webmachinelearning/webmcp <b>#253</b></code> agrega <code>debugging</code> a
-            <code>ToolAnnotations</code> para separar tools de desarrollo de las tools para usuarios.
+            <code>ToolAnnotations.debugging</code> marca tools destinadas a debugging y tooling de desarrollo,
+            no a los flujos habituales de usuarios. Es parte del draft actual de WebMCP.
           </p>
         </div>
         <div class="footer-bar">
@@ -844,7 +846,7 @@
   <span class="tok-var">name</span>: <span class="tok-str">"run_test_suite"</span>,
   <span class="tok-var">description</span>: <span class="tok-str">"Corre los tests de la app."</span>,
   <span class="tok-var">annotations</span>: {
-    <span class="tok-var">debugging</span>: <span class="tok-key">true</span><span class="tok-com">, // nuevo en #253</span>
+    <span class="tok-var">debugging</span>: <span class="tok-key">true</span><span class="tok-com">, // hint para tooling</span>
   },
   <span class="tok-var">inputSchema</span>: { <span class="tok-var">type</span>: <span class="tok-str">"object"</span> },
   <span class="tok-key">async</span> <span class="tok-fn">execute</span>() { <span class="tok-com">/* ... */</span> },
@@ -875,7 +877,7 @@
               <h3>MCP</h3>
               <ul>
                 <li>Proceso backend separado.</li>
-                <li>Transporte: stdio · HTTP + SSE.</li>
+                <li>Transporte: stdio · Streamable HTTP.</li>
                 <li>Aislamiento: proceso del sistema operativo.</li>
                 <li>Caso típico: integrar sistemas, datos y APIs.</li>
               </ul>
@@ -892,8 +894,8 @@
               <h3>WebMCP</h3>
               <ul>
                 <li>La propia página web.</li>
-                <li>Transporte: llamadas de función in-page.</li>
-                <li>Aislamiento: origin + permissions policy.</li>
+                <li>API web y ejecución mediada por el navegador.</li>
+                <li>Aislamiento: origin-keyed + Permissions Policy <code>tools</code>.</li>
                 <li>Caso típico: automatizar tareas dentro del sitio.</li>
               </ul>
               <div class="vs-tags"><code>registerTool</code><code>executeTool</code></div>
@@ -1024,7 +1026,7 @@
             <div class="benefit-card">
               <div class="k">// web/</div>
               <div class="v">WebMCP</div>
-              <div class="d">React + three.js. Tools por producto y a nivel tienda, agente con la Prompt API de Chrome.</div>
+              <div class="d">React + three.js. Tools por producto y tienda para un agente compatible con WebMCP.</div>
             </div>
             <div class="benefit-card">
               <div class="k">// mcp-server/</div>
