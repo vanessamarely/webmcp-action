@@ -34,6 +34,7 @@
     const THEME_KEY = 'deck.lightMode';
     const btnTheme = document.getElementById('ctrl-theme');
     const lblTheme = document.getElementById('ctrl-theme-label');
+    const themeIcon = document.getElementById('ctrl-theme-icon');
     let lightMode = false;
     try { lightMode = localStorage.getItem(THEME_KEY) === '1'; } catch (e) { }
 
@@ -42,10 +43,12 @@
             document.documentElement.classList.add('light-mode');
             btnTheme.setAttribute('data-active', '');
             lblTheme.textContent = 'Modo oscuro';
+            themeIcon.innerHTML = '<path d="M20 15.2A8.5 8.5 0 0 1 8.8 4 8.5 8.5 0 1 0 20 15.2Z" />';
         } else {
             document.documentElement.classList.remove('light-mode');
             btnTheme.removeAttribute('data-active');
             lblTheme.textContent = 'Modo claro';
+            themeIcon.innerHTML = '<circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />';
         }
     };
     applyTheme();

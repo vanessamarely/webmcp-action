@@ -3348,3 +3348,22 @@ html.light-mode .demo-cta-card .d a {
 html.light-mode .alert-list li {
   color: #7a2942;
 }
+
+html.light-mode .client-flow-slide .feature-row .vtf {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(0, 119, 160, 0.35) !important;
+  color: var(--ink);
+}
+
+html.light-mode .client-flow-slide .feature-row .vtf-d,
+html.light-mode .client-flow-slide .feature-row .vtf-d code {
+  color: var(--ink);
+}
+
+html.light-mode .client-flow-slide .feature-row .vtf-d code {
+  background: rgba(0, 119, 160, 0.1);
+}
+
+html.light-mode .client-flow-slide .feature-row .vtf:nth-child(3) .vtf-k {
+  color: #8a4b00;
+}
