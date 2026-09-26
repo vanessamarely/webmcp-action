@@ -908,7 +908,7 @@
               <ul class="alert-list">
                 <li><b>web/</b> — tools WebMCP por producto y a nivel tienda.</li>
                 <li><b>mcp-server/</b> — inventario real, protocolo MCP por stdio.</li>
-                <li><b>mcp-client/</b> — el mismo LLM habla los dos idiomas.</li>
+                <li><b>mcp-client/</b> — un cliente Node conecta el LLM con las tools MCP.</li>
               </ul>
             </div>
           </div>
@@ -1060,8 +1060,8 @@
             </div>
             <div class="benefit-card">
               <div class="k">// 04</div>
-              <div class="v">Un mismo LLM maneja los dos</div>
-              <div class="d">Tal como lo vimos en la demo — Claude o Gemini, mismo agente.</div>
+              <div class="v">El agente decide; cada capa ejecuta</div>
+              <div class="d">El LLM elige una tool; MCP la lleva al backend y WebMCP a la página.</div>
             </div>
           </div>
         </div>
