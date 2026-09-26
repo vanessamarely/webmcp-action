@@ -1275,17 +1275,19 @@ pre.code-block {
   font-size: 168px;
   font-weight: 700;
   line-height: 1;
-.webmcp-intro-slide .big-copy,
-.split-text-slide .big-copy {
-  font-size: 34px;
-  line-height: 1.34;
-}
   letter-spacing: -0.02em;
   text-transform: uppercase;
   margin: 0 0 24px 0;
   color: #ffffff;
 }
+.webmcp-intro-slide .big-copy,
+.split-text-slide .big-copy {
+  font-size: 34px;
+  line-height: 1.34;
+}
 .demo-cta-title .neon-magenta {
+  color: var(--accent-magenta);
+}
 .comparison-slide .title {
   margin-bottom: 24px;
 }
@@ -3131,8 +3133,8 @@ pre.code-block {
 
 .deck-controls {
   position: fixed;
-  top: auto;
-  bottom: 16px;
+  top: 16px;
+  bottom: auto;
   right: 16px;
   z-index: 9999;
   display: flex;
