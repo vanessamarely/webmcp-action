@@ -3240,6 +3240,12 @@ html.light-mode .tok-str  { color: #2a6e00; }
 html.light-mode .tok-com  { color: #475569; }
 html.light-mode .tok-var  { color: #0d2040; }
 html.light-mode .tok-num  { color: #7a4800; }
+html.light-mode .tok-prop { color: #8a4b00; }
+html.light-mode .confirmation-gates-slide [style*="ffd166"] { color: #8a4b00 !important; }
+html.light-mode .confirmation-gate,
+html.light-mode .confirmation-gate .k,
+html.light-mode .confirmation-gate code,
+html.light-mode .confirmation-gate-note code { color: #8a4b00; }
 
 html.light-mode .neon-cyan {
   color: #004d6e;

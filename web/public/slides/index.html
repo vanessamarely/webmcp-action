@@ -24,9 +24,9 @@
         --type-mono: 18px;
         --type-tag: 16px;
 
-        --pad-x: 46px;
-        --pad-top: 52px;
-        --pad-bottom: 58px;
+        --pad-x: 52px;
+        --pad-top: 42px;
+        --pad-bottom: 48px;
         --gap-title: 20px;
         --gap-item: 12px;
       }
@@ -129,6 +129,19 @@
       @media (max-width: 760px) { .webmcp-architecture { grid-template-columns: 1fr; gap: 28px; } .webmcp-link { width: 2px; height: 28px; justify-self: center; } .webmcp-link::after, .webmcp-link.reverse::after { top: auto; bottom: -1px; left: -4px; right: auto; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 9px solid currentColor; border-bottom: 0; } .webmcp-link-label { top: 5px; left: 16px; transform: none; } }
 
       .demo-cta-frame { justify-content: center; align-items: center; text-align: center; padding-top: 58px; padding-bottom: 72px; }
+      .tok-prop { color: #ffd166; font-weight: 700; }
+      .confirmation-gates-slide { justify-content: center; align-items: center; text-align: center; padding-top: 42px; padding-bottom: 48px; }
+      .confirmation-gates-slide .title { margin: 0 0 10px; }
+      .confirmation-gates-sub { margin: 0 0 22px; max-width: 880px; font-size: 17px; color: var(--ink-dim); }
+      .confirmation-gates { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; width: min(1000px, 100%); }
+      .confirmation-gate { min-height: 142px; padding: 16px 18px; background: rgba(2, 6, 23, 0.9); border: 1px solid rgba(255, 209, 102, 0.55); border-radius: 5px; text-align: left; }
+      .confirmation-gate .k { color: #ffd166; font: 700 12px "JetBrains Mono", monospace; letter-spacing: 0.08em; margin-bottom: 8px; }
+      .confirmation-gate .v { color: var(--ink); font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+      .confirmation-gate .d { color: var(--ink-dim); font-size: 14px; line-height: 1.3; }
+      .confirmation-gate code { color: #ffd166; }
+      .confirmation-gate-note { margin-top: 18px; font: 16px "JetBrains Mono", monospace; color: var(--ink); }
+      .confirmation-gate-note code { color: #ffd166; }
+      @media (max-width: 760px) { .confirmation-gates { grid-template-columns: 1fr; } .confirmation-gate { min-height: 0; } }
       .demo-cta-eyebrow { font-size: 15px; margin-bottom: 14px; letter-spacing: 0.24em; }
       .demo-cta-title { font-size: 58px; margin: 0 0 12px 0; line-height: 0.98; }
       .demo-cta-sub { font-size: 18px; margin: 0 0 22px 0; max-width: 720px; }
@@ -198,7 +211,7 @@
       .api-note b { font-size: 15px; }
 
       .io-badge { padding: 6px 14px; gap: 8px; font-size: 13px; }
-      .footer-bar { height: 40px; padding: 0 20px; font-size: 13px; }
+      .footer-bar { height: 40px; padding: 0 52px; font-size: 13px; }
       .footer-bar .socials { gap: 14px; }
       .frame > .eyebrow { position: absolute; top: var(--pad-top); left: var(--pad-x); margin: 0; z-index: 4; }
     </style>
@@ -240,7 +253,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 01 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 01 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
@@ -291,7 +304,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 02 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 02 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
@@ -350,7 +363,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 03 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 03 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
@@ -371,7 +384,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 04 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 04 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
@@ -405,7 +418,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 05 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 05 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
@@ -439,7 +452,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 06 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 06 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
@@ -473,7 +486,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 07 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 07 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
@@ -493,7 +506,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 08 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 08 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
@@ -529,7 +542,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 09 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 09 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
@@ -548,7 +561,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 10 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 10 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
@@ -578,7 +591,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 11 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 11 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
@@ -611,7 +624,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 12 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 12 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
@@ -640,7 +653,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 13 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 13 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
@@ -661,7 +674,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 14 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 14 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
@@ -704,7 +717,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 15 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 15 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
@@ -734,7 +747,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 16 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 16 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
@@ -750,14 +763,14 @@
             </div>
             <pre class="code-block summary-code"><span class="tok-key">await</span> <span class="tok-var">document</span>.<span class="tok-var">modelContext</span>.<span class="tok-fn">registerTool</span>(
   {
-    <span class="tok-var">name</span>: <span class="tok-str">"change_color"</span>,
-    <span class="tok-var">description</span>: <span class="tok-str">"Cambia el color"</span>,
-    <span class="tok-var">inputSchema</span>: {
+    <span class="tok-prop">name</span>: <span class="tok-str">"change_color"</span>,
+    <span class="tok-prop">description</span>: <span class="tok-str">"Cambia el color"</span>,
+    <span class="tok-prop">inputSchema</span>: {
       <span class="tok-var">type</span>: <span class="tok-str">"object"</span>,
       <span class="tok-var">properties</span>: { <span class="tok-var">hex</span>: { <span class="tok-var">type</span>: <span class="tok-str">"string"</span> } },
       <span class="tok-var">required</span>: [<span class="tok-str">"hex"</span>],
     },
-    <span class="tok-fn">execute</span>({ <span class="tok-var">hex</span> }) {
+    <span class="tok-prop">execute</span>({ <span class="tok-var">hex</span> }) {
       <span class="tok-var">scene</span>.<span class="tok-fn">setColor</span>(<span class="tok-var">hex</span>);
       <span class="tok-key">return</span> <span class="tok-fn">ok</span>(<span class="tok-str">"listo"</span>);
     },
@@ -772,7 +785,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 17 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 17 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
@@ -792,7 +805,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 18 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 18 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
@@ -826,7 +839,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 19 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 19 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
@@ -872,7 +885,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 20 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 20 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
@@ -906,7 +919,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 21 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 21 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
@@ -939,11 +952,48 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 22 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 22 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
-      <section data-label="23 Arquitectura demo">
+      <section data-label="23 Confirmation Gates">
+        <div class="mesh-bg" style="opacity: 0.3"></div>
+        <div class="frame confirmation-gates-slide">
+          <div class="eyebrow">// DevFest Quito</div>
+          <h1 class="title">Antes de ejecutar: <span style="color: #ffd166">confirmar</span></h1>
+          <p class="confirmation-gates-sub">Una tool puede preparar una acción sin autorización para completarla. El último paso debe devolver el control al usuario.</p>
+
+          <div class="confirmation-gates">
+            <div class="confirmation-gate">
+              <div class="k">// 01 · PREPARAR</div>
+              <div class="v">Validar intención</div>
+              <div class="d">Revisar parámetros, permisos y alcance. Todavía no cobrar ni borrar.</div>
+            </div>
+            <div class="confirmation-gate">
+              <div class="k">// 02 · CONFIRMAR</div>
+              <div class="v">Pedir aprobación explícita</div>
+              <div class="d">Mostrar qué ocurrirá y esperar un gesto del usuario: <code>confirm()</code>.</div>
+            </div>
+            <div class="confirmation-gate">
+              <div class="k">// 03 · EJECUTAR</div>
+              <div class="v">Resolver la tool</div>
+              <div class="d">Solo después de la aprobación se crea el pedido, se cobra o se elimina.</div>
+            </div>
+          </div>
+
+          <div class="confirmation-gate-note">&gt;&nbsp; reversible = automático · irreversible = <code>human_in_the_loop</code></div>
+        </div>
+        <div class="footer-bar">
+          <div class="socials">
+            <span>Instagram <b>vanessamarelycode</b></span>
+            <span>YouTube <b>vanessamarely</b></span>
+            <span>GitHub <b>vanessamarely</b></span>
+          </div>
+          <div class="counter">[ 23 <span class="total">/ 27</span> ]</div>
+        </div>
+      </section>
+
+      <section data-label="24 Arquitectura demo">
         <div class="mesh-bg" style="opacity: 0.3"></div>
         <div class="frame build-slide">
           <div class="eyebrow">// DevFest Quito</div>
@@ -977,11 +1027,11 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 23 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 24 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
-      <section data-label="24 Checklist">
+      <section data-label="25 Checklist">
         <div class="frame takeaway-slide">
           <div style="position: absolute; top: 90px; right: 100px; z-index: 0; opacity: 0.5;">
             <div class="wf-torus" style="width: 160px; height: 160px">
@@ -1021,11 +1071,11 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 24 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 25 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
-      <section data-label="25 Recursos">
+      <section data-label="26 Recursos">
         <div class="mesh-bg" style="opacity: 0.4"></div>
         <div class="frame demo-cta-frame resources-frame">
           <div class="eyebrow">// DevFest Quito</div>
@@ -1069,11 +1119,11 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 25 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 26 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
 
-      <section data-label="26 Q&amp;A">
+      <section data-label="27 Q&amp;A">
         <div class="mesh-bg"></div>
         <div class="frame qa-frame">
           <div class="eyebrow">// DevFest Quito</div>
@@ -1107,7 +1157,7 @@
             <span>YouTube <b>vanessamarely</b></span>
             <span>GitHub <b>vanessamarely</b></span>
           </div>
-          <div class="counter">[ 26 <span class="total">/ 26</span> ]</div>
+          <div class="counter">[ 27 <span class="total">/ 27</span> ]</div>
         </div>
       </section>
     </deck-stage>
