@@ -21,6 +21,9 @@ export default function Header(): JSX.Element {
         <button className="nav-link" onClick={() => navigate("/")}>
           Catálogo
         </button>
+        <a className="nav-link" href="/slides/" target="_blank" rel="noreferrer">
+          Slides
+        </a>
         <div className="cart-indicator">
           <CartIcon />
           <span>
