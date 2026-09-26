@@ -125,6 +125,16 @@
       .webmcp-link-label { position: absolute; left: 50%; top: -24px; transform: translateX(-50%); white-space: nowrap; color: var(--ink-dim); font: 12px "JetBrains Mono", monospace; }
       .webmcp-architecture-note { margin-top: 18px; color: var(--ink); font-size: 17px; }
       .webmcp-architecture-note code { color: var(--grid-cyan); }
+      .tool-explorer { width: min(920px, 100%); margin-top: 18px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      .tool-trigger { appearance: none; padding: 10px 12px; text-align: left; color: var(--ink); background: rgba(0, 242, 255, 0.07); border: 1px solid var(--rule-strong); border-radius: 4px; font: 700 13px "JetBrains Mono", monospace; cursor: pointer; }
+      .tool-trigger:hover, .tool-trigger[data-active] { color: #020617; background: var(--grid-cyan); }
+      .tool-trigger span { display: block; margin-top: 5px; color: var(--ink-dim); font: 12px "Space Grotesk", sans-serif; }
+      .tool-trigger:hover span, .tool-trigger[data-active] span { color: #020617; }
+      .tool-detail { min-height: 55px; margin-top: 10px; width: min(920px, 100%); padding: 10px 14px; text-align: left; background: rgba(2, 6, 23, 0.78); border-left: 3px solid var(--accent-magenta); color: var(--ink); font-size: 14px; line-height: 1.3; }
+      .tool-detail code { color: #ffd166; }
+      html.light-mode .tool-trigger { background: rgba(0, 119, 160, 0.08); }
+      html.light-mode .tool-trigger:hover, html.light-mode .tool-trigger[data-active] { color: #fff; background: var(--grid-cyan); }
+      html.light-mode .tool-detail { background: rgba(255, 255, 255, 0.92); }
       @keyframes webmcp-pulse { 0%, 100% { opacity: .45; transform: translateX(0); } 50% { opacity: 1; transform: translateX(5px); } }
       @media (max-width: 760px) { .webmcp-architecture { grid-template-columns: 1fr; gap: 28px; } .webmcp-link { width: 2px; height: 28px; justify-self: center; } .webmcp-link::after, .webmcp-link.reverse::after { top: auto; bottom: -1px; left: -4px; right: auto; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 9px solid currentColor; border-bottom: 0; } .webmcp-link-label { top: 5px; left: 16px; transform: none; } }
 
@@ -710,6 +720,12 @@
           </div>
 
           <div class="webmcp-architecture-note"><code>document.modelContext</code> conecta intención → acción, sin scraping ni MCP Server separado.</div>
+          <div class="tool-explorer" aria-label="Tools WebMCP interactivas">
+            <button class="tool-trigger" type="button" data-tool="change_color">change_color()<span>Actualiza el producto</span></button>
+            <button class="tool-trigger" type="button" data-tool="focus_view">focus_view()<span>Mueve la cámara</span></button>
+            <button class="tool-trigger" type="button" data-tool="add_to_cart">add_to_cart()<span>Prepara el carrito</span></button>
+          </div>
+          <div class="tool-detail" id="tool-detail" aria-live="polite"><code>Haz clic en una tool</code> para ver su contrato y el resultado que devolvería a un agente.</div>
         </div>
         <div class="footer-bar">
           <div class="socials">

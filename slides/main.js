@@ -56,6 +56,20 @@
         applyTheme();
     });
 
+    const toolDetails = {
+        change_color: 'Contrato: <code>hex: string</code> · Resultado: el producto cambia de color en la UI.',
+        focus_view: 'Contrato: <code>target: product</code> · Resultado: la cámara enfoca el producto elegido.',
+        add_to_cart: 'Contrato: <code>product_id, quantity</code> · Resultado: prepara el carrito; el checkout requiere confirmación.',
+    };
+    document.querySelectorAll('.tool-trigger').forEach((button) => {
+        button.addEventListener('click', () => {
+            document.querySelectorAll('.tool-trigger').forEach((item) => item.removeAttribute('data-active'));
+            button.setAttribute('data-active', '');
+            const detail = document.getElementById('tool-detail');
+            if (detail) detail.innerHTML = `<strong>${button.dataset.tool}()</strong> · ${toolDetails[button.dataset.tool]}`;
+        });
+    });
+
     // ── Fullscreen toggle ──────────────────────────────────
     const isFs = () => !!(document.fullscreenElement || document.webkitFullscreenElement);
 

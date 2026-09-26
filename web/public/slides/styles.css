@@ -3131,10 +3131,14 @@ pre.code-block {
 
 .deck-controls {
   position: fixed;
-  top: 16px;
+  top: auto;
+  bottom: 16px;
   right: 16px;
   z-index: 9999;
   display: flex;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
   gap: 8px;
   font-family: "JetBrains Mono", monospace;
 }
