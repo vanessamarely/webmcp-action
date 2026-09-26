@@ -291,6 +291,8 @@
     .rail[data-presenting] { display: none; }
     @media (max-width: 640px) {
       .rail, .rail-resize { display: none; }
+      .canvas { width: 100% !important; height: 100% !important; transform: none !important; }
+      ::slotted([data-deck-active]) { overflow-y: auto; }
     }
     /* User-driven show/hide (the TweaksPanel toggle) slides instead of
        popping. Transitions are gated on :host([data-rail-anim]) — set only

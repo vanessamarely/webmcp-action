@@ -10,8 +10,8 @@
         const active = stage.querySelector('[data-deck-active]');
         if (!active) return;
         const label = active.getAttribute('data-label') || '';
-        const isFlowSlide = label === '11 MCP Client flujo' || label === '15 Arquitectura WebMCP';
-        const flowFrame = active.querySelector('.client-flow-slide, .webmcp-architecture-slide');
+        const isFlowSlide = ['06 Arquitectura MCP', '08 MCP Server', '10 MCP Client', '11 MCP Client flujo', '15 Arquitectura WebMCP'].includes(label);
+        const flowFrame = active.querySelector('.mcp-diagram-slide, .client-flow-slide, .webmcp-architecture-slide');
         if (!flowFrame) return;
         flowFrame.classList.remove('flow-reveal');
         if (!isFlowSlide) return;
@@ -39,7 +39,68 @@
     };
     applyRail();
 
+    const mobile = window.matchMedia('(max-width: 640px)');
+    if (mobile.matches) lblRail.textContent = 'Abrir panel';
+    const controls = document.getElementById('deck-controls');
+    const btnMenu = document.getElementById('ctrl-menu');
+    const panel = document.getElementById('mobile-panel');
+    const panelList = document.getElementById('mobile-panel-list');
+    const slideButtons = [...stage.querySelectorAll('section[data-label]')].map((section, index) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.textContent = section.dataset.label;
+        button.addEventListener('click', () => {
+            stage.goTo(index);
+            closePanel();
+        });
+        panelList.append(button);
+        return button;
+    });
+    const closeMenu = () => {
+        controls.removeAttribute('data-open');
+        btnMenu.setAttribute('aria-expanded', 'false');
+        btnMenu.setAttribute('aria-label', 'Abrir menú');
+    };
+    const closePanel = () => {
+        panel.hidden = true;
+        btnMenu.focus();
+    };
+    const updateMobileNav = () => {
+        const activeIndex = [...stage.querySelectorAll('section[data-label]')].findIndex((section) => section.hasAttribute('data-deck-active'));
+        slideButtons.forEach((button, index) => {
+            if (index === activeIndex) button.setAttribute('aria-current', 'page');
+            else button.removeAttribute('aria-current');
+        });
+    };
+    stage.addEventListener('slidechange', updateMobileNav);
+    updateMobileNav();
+    btnMenu.addEventListener('click', () => {
+        const open = !controls.hasAttribute('data-open');
+        controls.toggleAttribute('data-open', open);
+        btnMenu.setAttribute('aria-expanded', String(open));
+        btnMenu.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    });
+    document.getElementById('mobile-panel-close').addEventListener('click', closePanel);
+    document.getElementById('mobile-panel-backdrop').addEventListener('click', closePanel);
+    document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+        if (!panel.hidden) closePanel();
+        else closeMenu();
+    });
+    mobile.addEventListener('change', () => {
+        closeMenu();
+        if (mobile.matches) lblRail.textContent = 'Abrir panel';
+        else { panel.hidden = true; applyRail(); }
+    });
+
     btnRail.addEventListener('click', () => {
+        if (mobile.matches) {
+            closeMenu();
+            panel.hidden = false;
+            updateMobileNav();
+            document.getElementById('mobile-panel-close').focus();
+            return;
+        }
         railHidden = !railHidden;
         try { localStorage.setItem(RAIL_KEY, railHidden ? '1' : '0'); } catch (e) { }
         applyRail();

@@ -2,6 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MCP + WebMCP — Charla técnica</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -128,37 +129,123 @@
       .architecture-cards .benefit-card .v { font-size: 20px; margin-bottom: 5px; line-height: 1.15; }
       .architecture-cards .benefit-card .d { font-size: 14px; line-height: 1.3; }
       .architecture-cards .benefit-card .d code { font-size: 13px; color: var(--grid-cyan); }
+      .mcp-diagram-slide { justify-content: center; padding-top: 72px; padding-bottom: 94px; }
+      .mcp-diagram-slide .title { margin-bottom: 14px; }
+      .mcp-diagram-sub { margin: 0 0 34px; font-size: 21px; color: var(--ink-dim); }
+      .mcp-diagram { display: grid; grid-template-columns: minmax(0, 1.35fr) 64px minmax(0, 1fr) 64px minmax(0, .9fr); align-items: center; width: 100%; }
+      .mcp-box { min-height: 230px; box-sizing: border-box; padding: 22px; border: 2px solid var(--rule-strong); border-radius: 6px; background: rgba(2, 6, 23, .9); }
+      .mcp-box .k { font: 700 16px "JetBrains Mono", monospace; color: var(--grid-cyan); }
+      .mcp-box .v { margin: 10px 0 8px; font-size: 29px; font-weight: 700; color: var(--ink); }
+      .mcp-box .d { font-size: 19px; line-height: 1.3; color: var(--ink-dim); }
+      .mcp-host { border-color: #40b87f; }
+      .mcp-host .k { color: #62df9d; }
+      .mcp-client { margin-top: 20px; padding: 12px 14px; border: 2px solid var(--accent-magenta); border-radius: 4px; background: rgba(189, 0, 255, .1); }
+      .mcp-client .k { color: #dd92ff; }
+      .mcp-client .v { margin: 4px 0 2px; font-size: 23px; }
+      .mcp-client .d { font-size: 16px; }
+      .mcp-server { border-color: var(--grid-cyan); }
+      .mcp-data { border-color: #ffd166; }
+      .mcp-data .k { color: #ffd166; }
+      .mcp-wire { position: relative; height: 2px; border-top: 2px dashed var(--ink-dim); }
+      .mcp-wire::after { content: ""; position: absolute; right: 0; top: -6px; border-left: 8px solid var(--ink-dim); border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+      .mcp-wire span { position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); font: 700 14px "JetBrains Mono", monospace; white-space: nowrap; color: var(--ink); }
+      .mcp-diagram-note { margin: 28px 0 0; font-size: 20px; color: var(--ink-dim); }
+      .mcp-diagram-note strong { color: var(--grid-cyan); }
+      .mcp-diagram-slide.flow-reveal .mcp-diagram > *,
+      .mcp-diagram-slide.flow-reveal .mcp-detail-flow > *,
+      .mcp-diagram-slide.flow-reveal .mcp-client,
+      .mcp-diagram-slide.flow-reveal .mcp-diagram-note { animation: flow-reveal 480ms cubic-bezier(.2,.8,.2,1) both; }
+      .mcp-diagram-slide.flow-reveal .mcp-diagram > :nth-child(1),
+      .mcp-diagram-slide.flow-reveal .mcp-detail-flow > :nth-child(1) { animation-delay: 80ms; }
+      .mcp-diagram-slide.flow-reveal .mcp-client:not(.mcp-box) { animation-delay: 320ms; }
+      .mcp-diagram-slide.flow-reveal .mcp-diagram > :nth-child(2),
+      .mcp-diagram-slide.flow-reveal .mcp-detail-flow > :nth-child(2) { animation-delay: 480ms; }
+      .mcp-diagram-slide.flow-reveal .mcp-diagram > :nth-child(3),
+      .mcp-diagram-slide.flow-reveal .mcp-detail-flow > :nth-child(3) { animation-delay: 690ms; }
+      .mcp-diagram-slide.flow-reveal .mcp-diagram > :nth-child(4),
+      .mcp-diagram-slide.flow-reveal .mcp-detail-flow > :nth-child(4) { animation-delay: 900ms; }
+      .mcp-diagram-slide.flow-reveal .mcp-diagram > :nth-child(5),
+      .mcp-diagram-slide.flow-reveal .mcp-detail-flow > :nth-child(5) { animation-delay: 1110ms; }
+      .mcp-diagram-slide.flow-reveal .mcp-diagram-note { animation-delay: 1330ms; }
+      @media (prefers-reduced-motion: reduce) {
+        .mcp-diagram-slide.flow-reveal .mcp-diagram > *,
+        .mcp-diagram-slide.flow-reveal .mcp-detail-flow > *,
+        .mcp-diagram-slide.flow-reveal .mcp-client,
+        .mcp-diagram-slide.flow-reveal .mcp-diagram-note { animation: none; }
+      }
+      .mcp-detail-flow { display: grid; grid-template-columns: minmax(0, 1fr) 64px minmax(0, 1fr) 64px minmax(0, 1fr); align-items: center; width: 100%; margin-top: 28px; }
+      .mcp-detail-flow .mcp-box { min-height: 205px; }
+      .mcp-detail-flow .mcp-box .v { font-size: 26px; }
+      .mcp-detail-flow .mcp-box .d { font-size: 18px; }
+      .mcp-detail-flow .mcp-box:not(.focus) { opacity: .65; }
+      .mcp-detail-flow .focus { box-shadow: 0 0 32px rgba(0, 242, 255, .18); }
+      .mcp-detail-flow .mcp-client.focus { margin-top: 0; background: rgba(189, 0, 255, .12); box-shadow: 0 0 32px rgba(189, 0, 255, .2); }
+      .mcp-detail-flow .mcp-client .v { margin: 10px 0 8px; }
+      @media (max-width: 640px) {
+        .frame { position: relative; inset: auto; width: 100%; min-height: calc(100dvh - 40px); box-sizing: border-box; padding: 64px 20px 32px; }
+        .frame > .eyebrow { position: static; margin: 0 0 14px; }
+        .footer-bar { position: relative; height: 40px; box-sizing: border-box; padding: 0 20px; }
+        .footer-bar .socials { display: none; }
+        .mcp-diagram-slide { justify-content: flex-start; }
+        .mcp-diagram-slide .title { font-size: 30px; }
+        .mcp-diagram-sub { margin-bottom: 18px; font-size: 17px; }
+        .mcp-diagram, .mcp-detail-flow { grid-template-columns: minmax(0, 1fr); gap: 10px; margin-top: 0; }
+        .mcp-box, .mcp-detail-flow .mcp-box { min-height: 0; padding: 14px; }
+        .mcp-box .v, .mcp-detail-flow .mcp-box .v { font-size: 22px; }
+        .mcp-box .d, .mcp-detail-flow .mcp-box .d { font-size: 16px; }
+        .mcp-client { margin-top: 12px; }
+        .mcp-wire { width: 2px; height: 20px; justify-self: center; border-top: 0; border-left: 2px dashed var(--ink-dim); }
+        .mcp-wire::after { top: auto; bottom: 0; right: -5px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 8px solid var(--ink-dim); border-bottom: 0; }
+        .mcp-wire span { top: 0; bottom: auto; left: 12px; transform: none; }
+        .mcp-diagram-note { margin-top: 18px; font-size: 16px; }
+        .webmcp-architecture-slide { justify-content: flex-start; align-items: stretch; text-align: left; padding: 64px 20px 32px; }
+        .webmcp-architecture-slide .title { font-size: 30px; }
+        .webmcp-architecture-sub { font-size: 16px; }
+        .webmcp-node .d { font-size: 16px; }
+        .tool-explorer { grid-template-columns: 1fr; }
+      }
       .webmcp-architecture-slide { justify-content: center; align-items: center; text-align: center; padding-top: 62px; padding-bottom: 82px; }
       .webmcp-architecture-slide .title { margin: 0 0 10px; }
-      .webmcp-architecture-sub { margin: 0 0 22px; font-size: 16px; color: var(--ink-dim); }
+      .webmcp-architecture-sub { margin: 0 0 22px; font-size: 18px; color: var(--ink-dim); }
       .webmcp-architecture { display: grid; grid-template-columns: 1fr 86px 1.35fr 86px 1fr; align-items: center; width: min(920px, 100%); }
       .webmcp-node { min-height: 150px; padding: 18px 16px; display: flex; flex-direction: column; justify-content: center; gap: 8px; background: rgba(2, 6, 23, 0.9); border: 1px solid var(--rule-strong); border-radius: 5px; text-align: left; }
       .webmcp-node.browser { border-color: var(--grid-cyan); box-shadow: 0 0 24px rgba(0, 242, 255, 0.1); }
       .webmcp-node.agent { border-color: var(--accent-magenta); box-shadow: 0 0 24px rgba(189, 0, 255, 0.1); }
-      .webmcp-node .k { color: var(--grid-cyan); font: 700 12px "JetBrains Mono", monospace; letter-spacing: 0.08em; }
+      .webmcp-node .k { color: var(--grid-cyan); font: 700 14px "JetBrains Mono", monospace; letter-spacing: 0.08em; }
       .webmcp-node.agent .k { color: var(--accent-magenta); }
-      .webmcp-node .v { color: var(--ink); font-size: 20px; font-weight: 700; }
-      .webmcp-node .d { color: var(--ink-dim); font-size: 14px; line-height: 1.3; }
+      .webmcp-node .v { color: var(--ink); font-size: 22px; font-weight: 700; }
+      .webmcp-node .d { color: var(--ink-dim); font-size: 16px; line-height: 1.3; }
       .webmcp-link { position: relative; height: 2px; background: var(--grid-cyan); }
       .webmcp-link.reverse { background: var(--accent-magenta); }
       .webmcp-link::after { content: ""; position: absolute; top: -4px; right: -1px; border-left: 9px solid currentColor; border-top: 5px solid transparent; border-bottom: 5px solid transparent; color: inherit; animation: webmcp-pulse 1.6s ease-in-out infinite; }
       .webmcp-link.reverse::after { right: auto; left: -1px; }
-      .webmcp-link-label { position: absolute; left: 50%; top: -24px; transform: translateX(-50%); white-space: nowrap; color: var(--ink-dim); font: 12px "JetBrains Mono", monospace; }
-      .webmcp-architecture-note { margin-top: 18px; color: var(--ink); font-size: 17px; }
+      .webmcp-link-label { position: absolute; left: 50%; top: -26px; transform: translateX(-50%); white-space: nowrap; color: var(--ink-dim); font: 14px "JetBrains Mono", monospace; }
+      .webmcp-architecture-note { margin-top: 18px; color: var(--ink); font-size: 19px; }
       .webmcp-architecture-note code { color: var(--grid-cyan); }
       .webmcp-status { display: block; margin-top: 14px; color: var(--ink-dim); font-size: 15px; }
       .tool-explorer { width: min(920px, 100%); margin-top: 18px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-      .tool-trigger { appearance: none; padding: 10px 12px; text-align: left; color: var(--ink); background: rgba(0, 242, 255, 0.07); border: 1px solid var(--rule-strong); border-radius: 4px; font: 700 13px "JetBrains Mono", monospace; cursor: pointer; }
+      .tool-trigger { appearance: none; padding: 10px 12px; text-align: left; color: var(--ink); background: rgba(0, 242, 255, 0.07); border: 1px solid var(--rule-strong); border-radius: 4px; font: 700 15px "JetBrains Mono", monospace; cursor: pointer; }
       .tool-trigger:hover, .tool-trigger[data-active] { color: #020617; background: var(--grid-cyan); }
-      .tool-trigger span { display: block; margin-top: 5px; color: var(--ink-dim); font: 12px "Space Grotesk", sans-serif; }
+      .tool-trigger span { display: block; margin-top: 5px; color: var(--ink-dim); font: 14px "Space Grotesk", sans-serif; }
       .tool-trigger:hover span, .tool-trigger[data-active] span { color: #020617; }
-      .tool-detail { min-height: 55px; margin-top: 10px; width: min(920px, 100%); padding: 10px 14px; text-align: left; background: rgba(2, 6, 23, 0.78); border-left: 3px solid var(--accent-magenta); color: var(--ink); font-size: 14px; line-height: 1.3; }
+      .tool-detail { min-height: 55px; margin-top: 10px; width: min(920px, 100%); padding: 10px 14px; text-align: left; background: rgba(2, 6, 23, 0.78); border-left: 3px solid var(--accent-magenta); color: var(--ink); font-size: 16px; line-height: 1.3; }
       .tool-detail code { color: #ffd166; }
       html.light-mode .tool-trigger { background: rgba(0, 119, 160, 0.08); }
       html.light-mode .tool-trigger:hover, html.light-mode .tool-trigger[data-active] { color: #fff; background: var(--grid-cyan); }
       html.light-mode .tool-detail { background: rgba(255, 255, 255, 0.92); }
+      @media (max-width: 640px) {
+        .deck-controls { top: 8px; right: 8px; gap: 4px; flex-direction: column; align-items: flex-end; }
+        .deck-controls:not([data-open]) .deck-ctrl:not(#ctrl-menu) { display: none; }
+        .deck-ctrl { padding: 8px 10px; }
+        .deck-controls[data-open] .deck-ctrl span { display: inline; }
+        #ctrl-menu, #ctrl-rail { display: inline-flex; }
+        .webmcp-architecture-slide { padding-top: 64px; padding-bottom: 32px; }
+        .webmcp-architecture-slide .title { font-size: 30px; }
+        .webmcp-architecture { grid-template-columns: minmax(0, 1fr); }
+        .tool-explorer { grid-template-columns: minmax(0, 1fr); }
+      }
       @keyframes webmcp-pulse { 0%, 100% { opacity: .45; transform: translateX(0); } 50% { opacity: 1; transform: translateX(5px); } }
-      @media (max-width: 760px) { .webmcp-architecture-slide { padding-top: 28px; padding-bottom: 38px; } .webmcp-architecture-slide .title { font-size: 34px; } .webmcp-architecture-sub { margin-bottom: 12px; font-size: 13px; } .webmcp-architecture { grid-template-columns: 1fr; gap: 12px; } .webmcp-node { min-height: 76px; padding: 10px 12px; gap: 4px; } .webmcp-node .k { font-size: 10px; } .webmcp-node .v { font-size: 16px; } .webmcp-node .d { font-size: 12px; line-height: 1.2; } .webmcp-link { width: 2px; height: 16px; justify-self: center; } .webmcp-link::after, .webmcp-link.reverse::after { top: auto; bottom: -1px; left: -4px; right: auto; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 9px solid currentColor; border-bottom: 0; } .webmcp-link-label { top: 1px; left: 12px; transform: none; font-size: 10px; } .webmcp-architecture-note { margin-top: 10px; font-size: 13px; } .tool-explorer { margin-top: 10px; gap: 6px; } .tool-trigger { padding: 7px 8px; font-size: 11px; } .tool-trigger span { margin-top: 3px; font-size: 10px; } .tool-detail { min-height: 42px; margin-top: 6px; padding: 7px 9px; font-size: 12px; } }
+      @media (max-width: 760px) { .webmcp-architecture-slide { padding-top: 28px; padding-bottom: 38px; } .webmcp-architecture-slide .title { font-size: 36px; } .webmcp-architecture-sub { margin-bottom: 12px; font-size: 15px; } .webmcp-architecture { grid-template-columns: 1fr; gap: 12px; } .webmcp-node { min-height: 76px; padding: 10px 12px; gap: 4px; } .webmcp-node .k { font-size: 12px; } .webmcp-node .v { font-size: 18px; } .webmcp-node .d { font-size: 14px; line-height: 1.2; } .webmcp-link { width: 2px; height: 16px; justify-self: center; } .webmcp-link::after, .webmcp-link.reverse::after { top: auto; bottom: -1px; left: -4px; right: auto; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 9px solid currentColor; border-bottom: 0; } .webmcp-link-label { top: 1px; left: 12px; transform: none; font-size: 12px; } .webmcp-architecture-note { margin-top: 10px; font-size: 15px; } .tool-explorer { margin-top: 10px; gap: 6px; } .tool-trigger { padding: 7px 8px; font-size: 13px; } .tool-trigger span { margin-top: 3px; font-size: 12px; } .tool-detail { min-height: 42px; margin-top: 6px; padding: 7px 9px; font-size: 14px; } }
 
       .demo-cta-frame { justify-content: center; align-items: center; text-align: center; padding-top: 58px; padding-bottom: 72px; }
       .tok-prop { color: #ffd166; font-weight: 700; }
@@ -251,6 +338,26 @@
       .footer-bar { height: 40px; padding: 0 52px; font-size: 13px; }
       .footer-bar .socials { gap: 14px; }
       .frame > .eyebrow { position: absolute; top: var(--pad-top); left: var(--pad-x); margin: 0; z-index: 4; }
+      @media (max-width: 640px) {
+        deck-stage > section[data-deck-active] { overflow-y: auto !important; overflow-x: hidden !important; touch-action: pan-y; }
+        .frame > .eyebrow { position: static; margin: 0 0 14px; }
+        .webmcp-architecture-slide { justify-content: flex-start; align-items: stretch; text-align: left; padding: 64px 20px 32px; }
+        .webmcp-architecture-slide .title { font-size: 30px; }
+        .tool-explorer { grid-template-columns: minmax(0, 1fr); }
+        .frame .title { max-width: 100%; font-size: 30px; overflow-wrap: anywhere; }
+        .bio-row, .problem-grid, .vs-grid, .centered-vs-slide .vs-grid, .complement-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; width: 100%; flex: 0 0 auto; }
+        .bio-photo-wrap { width: 200px; height: 200px; margin: 0 auto; }
+        .bio-photo-slot { width: 180px; height: 180px; }
+        .bio-name { font-size: 32px; }
+        .bio-role { font-size: 20px; }
+        .bio-list li { font-size: 17px; }
+        .vs-col, .alert-panel { min-width: 0; }
+        .problem-body p { font-size: 18px; }
+        .alert-list li { font-size: 16px; }
+        .build-slide > p.mono { max-width: 100%; font-size: 14px !important; overflow-wrap: anywhere; }
+        .qa-social-cards { grid-template-columns: minmax(0, 1fr); }
+        .qa-social-cards .demo-cta-card .v { overflow-wrap: anywhere; }
+      }
     </style>
   </head>
   <body>
@@ -461,27 +568,35 @@
 
       <section data-label="06 Arquitectura MCP">
         <div class="mesh-bg" style="opacity: 0.3"></div>
-        <div class="frame centered-benefits-slide architecture-cards-slide">
+        <div class="frame mcp-diagram-slide">
           <div class="eyebrow">// DevFest Quito</div>
-          <h1 class="title">Host, <span class="cyan">Client</span> y <span class="magenta">Server</span></h1>
-
-          <div class="benefits architecture-cards">
-            <div class="benefit-card">
-              <div class="k">// 01 · HOST</div>
-              <div class="v">La app de IA</div>
-              <div class="d">Claude Desktop, tu IDE o tu CLI. Orquesta la conversación con el usuario.</div>
+          <h1 class="title">Arquitectura <span class="cyan">MCP</span></h1>
+          <p class="mcp-diagram-sub">Quién decide, quién conecta y dónde se ejecutan las capacidades.</p>
+          <div class="mcp-diagram" role="img" aria-label="Host de IA contiene un cliente MCP. El cliente se conecta uno a uno por MCP con un servidor independiente, que accede a datos, APIs y tareas.">
+            <div class="mcp-box mcp-host">
+              <div class="k">01 / HOST</div>
+              <div class="v">App de IA + LLM</div>
+              <div class="d">Conversación y decisión de usar una tool.</div>
+              <div class="mcp-client">
+                <div class="k">02 / CLIENT</div>
+                <div class="v">Conexión MCP</div>
+                <div class="d">Descubre e invoca tools.</div>
+              </div>
             </div>
-            <div class="benefit-card">
-              <div class="k">// 02 · CLIENT</div>
-              <div class="v">Vive dentro del host</div>
-              <div class="d">Mantiene una conexión <code>1:1</code> con cada server.</div>
+            <div class="mcp-wire"><span>1:1 MCP</span></div>
+            <div class="mcp-box mcp-server">
+              <div class="k">03 / SERVER</div>
+              <div class="v">Capacidades</div>
+              <div class="d">Tools, resources y prompts en un proceso separado.</div>
             </div>
-            <div class="benefit-card">
-              <div class="k">// 03 · SERVER</div>
-              <div class="v">Proceso separado</div>
-              <div class="d">Expone <code>tools</code>, <code>resources</code> y <code>prompts</code>.</div>
+            <div class="mcp-wire"><span>acceso</span></div>
+            <div class="mcp-box mcp-data">
+              <div class="k">04 / SISTEMAS</div>
+              <div class="v">Datos + APIs</div>
+              <div class="d">Inventario, archivos y tareas reales.</div>
             </div>
           </div>
+          <p class="mcp-diagram-note"><strong>Host → Client → Server</strong> · el servidor actúa; el modelo no accede directamente a los datos.</p>
         </div>
         <div class="footer-bar">
           <div class="socials">
@@ -528,14 +643,18 @@
       </section>
 
       <section data-label="08 MCP Server">
-        <div class="frame split-text-slide">
+        <div class="frame mcp-diagram-slide">
           <div class="eyebrow">// DevFest Quito</div>
           <h1 class="title">MCP <span class="cyan">Server</span></h1>
-
-          <p class="centered-copy big-copy">
-            Un programa independiente de la app de IA que expone capacidades mediante MCP:
-            tools, resources y prompts conectados a inventario, bases de datos o APIs.
-          </p>
+          <p class="mcp-diagram-sub">Proceso independiente que ejecuta las capacidades solicitadas por el cliente.</p>
+          <div class="mcp-detail-flow" role="img" aria-label="El cliente MCP invoca un servidor independiente, que ejecuta tools y accede al inventario o APIs.">
+            <div class="mcp-box mcp-host"><div class="k">HOST + CLIENT</div><div class="v">Solicita una tool</div><div class="d">El modelo decide; el cliente envía la llamada.</div></div>
+            <div class="mcp-wire"><span>MCP</span></div>
+            <div class="mcp-box mcp-server focus"><div class="k">MCP SERVER</div><div class="v">Ejecuta</div><div class="d">Expone tools, resources y prompts.</div></div>
+            <div class="mcp-wire"><span>acceso</span></div>
+            <div class="mcp-box mcp-data"><div class="k">SISTEMAS</div><div class="v">Inventario</div><div class="d">Datos, archivos y APIs reales.</div></div>
+          </div>
+          <p class="mcp-diagram-note"><strong>En esta demo:</strong> place_order valida el pedido y descuenta stock en el servidor.</p>
         </div>
         <div class="footer-bar">
           <div class="socials">
@@ -584,14 +703,18 @@
       </section>
 
       <section data-label="10 MCP Client">
-        <div class="frame split-text-slide">
+        <div class="frame mcp-diagram-slide">
           <div class="eyebrow">// DevFest Quito</div>
           <h1 class="title">MCP <span class="magenta">Client</span></h1>
-
-          <p class="centered-copy big-copy">
-            Conecta al server, le pasa sus tools a un LLM compatible y ejecuta lo que el modelo decida llamar.
-            En este repo usamos Claude o Gemini desde Node; MCP no depende de un modelo concreto ni de Gemini Nano.
-          </p>
+          <p class="mcp-diagram-sub">El puente entre el LLM y cada servidor MCP; una conexión por servidor.</p>
+          <div class="mcp-detail-flow" role="img" aria-label="El LLM en el host decide usar una tool, el cliente MCP descubre e invoca esa tool, y el servidor devuelve el resultado.">
+            <div class="mcp-box mcp-host"><div class="k">HOST / LLM</div><div class="v">Claude o Gemini</div><div class="d">Decide si necesita usar una tool.</div></div>
+            <div class="mcp-wire"><span>decide</span></div>
+            <div class="mcp-box mcp-client focus"><div class="k">MCP CLIENT</div><div class="v">Descubre + invoca</div><div class="d">Lista tools y pasa el resultado al modelo.</div></div>
+            <div class="mcp-wire"><span>1:1 MCP</span></div>
+            <div class="mcp-box mcp-server"><div class="k">MCP SERVER</div><div class="v">Responde</div><div class="d">Ejecuta la tool en otro proceso.</div></div>
+          </div>
+          <p class="mcp-diagram-note"><strong>En esta demo:</strong> el cliente Node inicia el servidor local por stdio.</p>
         </div>
         <div class="footer-bar">
           <div class="socials">
@@ -725,26 +848,26 @@
           <p class="webmcp-architecture-sub">La página es la superficie de tools: el agente y la UI comparten el mismo navegador.</p>
 
           <div class="webmcp-architecture">
-            <div class="webmcp-node browser">
-              <div class="k">// 01 · PÁGINA</div>
-              <div class="v">UI + estado</div>
-              <div class="d">Catálogo, carrito y configurador que el usuario ya está viendo.</div>
+            <div class="webmcp-node agent">
+              <div class="k">// 01 · AGENTE</div>
+              <div class="v">Intención</div>
+              <div class="d">Descubre las tools y decide cuál invocar.</div>
             </div>
             <div class="webmcp-link">
-              <span class="webmcp-link-label">getTools()</span>
+              <span class="webmcp-link-label">llamada</span>
             </div>
-            <div class="webmcp-node agent">
-              <div class="k">// 02 · AGENTE</div>
-              <div class="v">Agente compatible</div>
-              <div class="d">Observa las tools disponibles y decide cuándo invocarlas dentro del navegador.</div>
+            <div class="webmcp-node browser">
+              <div class="k">// 02 · DOCUMENTO</div>
+              <div class="v">modelContext</div>
+              <div class="d">Registra tools con nombre, esquema y función execute.</div>
             </div>
-            <div class="webmcp-link reverse">
+            <div class="webmcp-link">
               <span class="webmcp-link-label">executeTool()</span>
             </div>
             <div class="webmcp-node browser">
-              <div class="k">// 03 · CONTRATO</div>
-              <div class="v">modelContext</div>
-              <div class="d">JSON Schema, permisos y acciones visibles para el usuario.</div>
+              <div class="k">// 03 · PÁGINA</div>
+              <div class="v">UI + estado</div>
+              <div class="d">La misma lógica cambia el catálogo, producto o carrito visible.</div>
             </div>
           </div>
 
@@ -1211,6 +1334,9 @@
     <script src="image-slot.js"></script>
 
     <div class="deck-controls" id="deck-controls">
+      <button class="deck-ctrl" id="ctrl-menu" type="button" aria-label="Abrir menú" aria-expanded="false" title="Menú de presentación">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
+      </button>
       <button class="deck-ctrl" id="ctrl-rail" title="Mostrar / ocultar panel lateral (S)">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <rect x="3" y="4" width="6" height="16" rx="1" />
@@ -1240,6 +1366,13 @@
       </button>
     </div>
 
+    <div class="mobile-panel" id="mobile-panel" hidden>
+      <div class="mobile-panel-backdrop" id="mobile-panel-backdrop"></div>
+      <aside class="mobile-panel-sidebar" role="dialog" aria-modal="true" aria-label="Slides">
+        <div class="mobile-panel-header"><strong>Slides</strong><button type="button" id="mobile-panel-close" aria-label="Cerrar panel">×</button></div>
+        <nav id="mobile-panel-list" aria-label="Ir a slide"></nav>
+      </aside>
+    </div>
     <script src="./main.js"></script>
   </body>
 </html>
