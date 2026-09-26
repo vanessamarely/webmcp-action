@@ -6,6 +6,21 @@
     const lblFs = document.getElementById('ctrl-fs-label');
     if (!stage) return;
 
+    const replayFlowAnimation = () => {
+        const active = stage.querySelector('[data-deck-active]');
+        if (!active) return;
+        const label = active.getAttribute('data-label') || '';
+        const isFlowSlide = label === '11 MCP Client flujo' || label === '15 Arquitectura WebMCP';
+        const flowFrame = active.querySelector('.client-flow-slide, .webmcp-architecture-slide');
+        if (!flowFrame) return;
+        flowFrame.classList.remove('flow-reveal');
+        if (!isFlowSlide) return;
+        void flowFrame.offsetWidth;
+        flowFrame.classList.add('flow-reveal');
+    };
+    stage.addEventListener('slidechange', replayFlowAnimation);
+    requestAnimationFrame(replayFlowAnimation);
+
     // ── Rail toggle ────────────────────────────────────────
     const RAIL_KEY = 'deck.userRailHidden';
     let railHidden = false;

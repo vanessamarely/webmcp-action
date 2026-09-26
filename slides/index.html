@@ -101,6 +101,27 @@
       .client-flow-slide .feature-row .vtf-k { font-size: 15px; margin-bottom: 8px; }
       .client-flow-slide .feature-row .vtf-d { font-size: 19px; line-height: 1.32; }
       .client-flow-slide .feature-row .vtf-d code { font-size: 17px; color: var(--grid-cyan); }
+      .client-flow-slide.flow-reveal .vtf,
+      .webmcp-architecture-slide.flow-reveal .webmcp-node,
+      .webmcp-architecture-slide.flow-reveal .webmcp-link,
+      .webmcp-architecture-slide.flow-reveal .webmcp-architecture-note,
+      .webmcp-architecture-slide.flow-reveal .tool-trigger,
+      .webmcp-architecture-slide.flow-reveal .tool-detail { animation: flow-reveal 520ms cubic-bezier(.2,.8,.2,1) both; }
+      .client-flow-slide.flow-reveal .vtf:nth-child(1),
+      .webmcp-architecture-slide.flow-reveal .webmcp-node:nth-child(1) { animation-delay: 80ms; }
+      .client-flow-slide.flow-reveal .vtf:nth-child(2),
+      .webmcp-architecture-slide.flow-reveal .webmcp-link:nth-child(2) { animation-delay: 360ms; }
+      .client-flow-slide.flow-reveal .vtf:nth-child(3),
+      .webmcp-architecture-slide.flow-reveal .webmcp-node:nth-child(3) { animation-delay: 640ms; }
+      .webmcp-architecture-slide.flow-reveal .webmcp-link:nth-child(4) { animation-delay: 920ms; }
+      .webmcp-architecture-slide.flow-reveal .webmcp-node:nth-child(5) { animation-delay: 1180ms; }
+      .webmcp-architecture-slide.flow-reveal .webmcp-architecture-note { animation-delay: 1460ms; }
+      .webmcp-architecture-slide.flow-reveal .tool-trigger:nth-child(1) { animation-delay: 1720ms; }
+      .webmcp-architecture-slide.flow-reveal .tool-trigger:nth-child(2) { animation-delay: 1860ms; }
+      .webmcp-architecture-slide.flow-reveal .tool-trigger:nth-child(3) { animation-delay: 2000ms; }
+      .webmcp-architecture-slide.flow-reveal .tool-detail { animation-delay: 2140ms; }
+      @keyframes flow-reveal { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+      @media (prefers-reduced-motion: reduce) { .client-flow-slide.flow-reveal .vtf, .webmcp-architecture-slide.flow-reveal .webmcp-node, .webmcp-architecture-slide.flow-reveal .webmcp-link, .webmcp-architecture-slide.flow-reveal .webmcp-architecture-note, .webmcp-architecture-slide.flow-reveal .tool-trigger, .webmcp-architecture-slide.flow-reveal .tool-detail { animation: none; } }
       .architecture-cards { width: min(760px, 100%); margin: 0 auto; gap: 12px; }
       .architecture-cards .benefit-card { padding: 14px 16px; text-align: left; }
       .architecture-cards .benefit-card .k { font-size: 11px; margin-bottom: 5px; }
