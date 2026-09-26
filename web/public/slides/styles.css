@@ -6,7 +6,7 @@
   --accent-magenta: #bd00ff;
   --accent-red: #ff2d6f;
   --ink: #e6f6ff;
-  --ink-dim: #8aa4c4;
+  --ink-dim: #e2e8f0;
   --rule: rgba(0, 242, 255, 0.18);
   --rule-strong: rgba(0, 242, 255, 0.45);
 
@@ -762,7 +762,7 @@ pre.code-block {
   text-align: left;
 }
 .split-code-slide .code-block {
-  font-size: 15px;
+  font-size: 20px;
   line-height: 1.32;
   max-height: 370px;
   overflow: hidden;
@@ -1208,7 +1208,7 @@ pre.code-block {
   flex-direction: column;
 }
 .applied-grid .code-frame pre.code-block {
-  font-size: 18px;
+  font-size: 20px;
   padding: 16px 22px;
   line-height: 1.38;
   flex: 1;
@@ -3187,13 +3187,13 @@ deck-stage:fullscreen ~ .deck-controls {
 
 /* ============ LIGHT MODE ============ */
 html.light-mode {
-  --bg-deep: #f0f4ff;
+  --bg-deep: #f8fafc;
   --bg-panel: rgba(255, 255, 255, 0.95);
   --grid-cyan: #0077a0;
   --accent-magenta: #7b00cc;
   --accent-red: #cc1a4f;
-  --ink: #0d1b2e;
-  --ink-dim: #4a6480;
+  --ink: #0f172a;
+  --ink-dim: #334155;
   --rule: rgba(0, 119, 160, 0.18);
   --rule-strong: rgba(0, 119, 160, 0.42);
 }
@@ -3237,7 +3237,7 @@ html.light-mode code { color: #0d2040; }
 html.light-mode .tok-key  { color: #a8005c; }
 html.light-mode .tok-fn   { color: #005f80; }
 html.light-mode .tok-str  { color: #2a6e00; }
-html.light-mode .tok-com  { color: #7a8f9a; }
+html.light-mode .tok-com  { color: #475569; }
 html.light-mode .tok-var  { color: #0d2040; }
 html.light-mode .tok-num  { color: #7a4800; }
 
